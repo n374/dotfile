@@ -91,6 +91,8 @@
         " }}}
 	" }}}
 	" Searching -------------------------------------------------------------{{{
+        nnoremap <leader>si :execute '/' . expand("<cword>")<cr>
+        nnoremap <leader>sa :execute '/' . expand("<cWORD>")<cr>
         " Keep search matches in the middle 
         " of the window and pulse the line when 
         " moving to them.
