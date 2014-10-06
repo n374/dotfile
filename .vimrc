@@ -75,15 +75,19 @@
         noremap <silent> <leader>ss :source ~/.vimrc<cr>:echom "vimrc sourced"<cr>
 	" }}}
 	" Fast editing ----------------------------------------------------------{{{
-	    " Edit the specific file in current window -------------------------{{{
+	    " Edit the specific file in current window --------------------------{{{
             nnoremap <leader>v :e ~/.vimrc<cr>
             nnoremap <leader>z :e ~/.zshrc<cr>
 	    " }}}
-        " Split the current window and load the specific file ----------------{{{
+	    " Edit the specific file in a new tab -------------------------------{{{
+            nnoremap <leader>tv :tabnew ~/.vimrc<cr>
+            nnoremap <leader>tz :tabnew ~/.zshrc<cr>
+	    " }}}
+        " Split the current window and load the specific file ---------------{{{
             nnoremap <leader>sv :split ~/.vimrc<cr>  
             nnoremap <leader>sz :split ~/.zshrc<cr>
         " }}}
-        " Split the current window vertically and load the specific file -----{{{
+        " Split the current window vertically and load the specific file ----{{{
             nnoremap <leader>vv :vsplit ~/.vimrc<cr>
             nnoremap <leader>vz :vsplit ~/.zshrc<cr>
         " }}}
@@ -110,8 +114,8 @@
 	" Close other fold recursively ------------------------------------------{{{
         nnoremap  <leader>zc :execute "normal! mfzM`f100zozz" <cr>
         " mf:    set mark "f" at current position (hope you not using this mark)
-        " zM:    select all the text, close all folder recursively
-        " `f100zozz: back to mark "f", seems we need to open all the folder 
+        " zM:    select all the text, close all fold recursively
+        " `f100zozz: back to mark "f", seems we need to open all the fold 
                     " 100 should be big enough
 	" }}}
 	" Highlight Word --------------------------------------------------------{{{
@@ -254,10 +258,16 @@
         nnoremap <leader>aC :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cWORD>")) . "<cr>"
     " " }}}
     " Fold-------------------------------------------------------------------{{{
-        nnoremap <space> za
-        vnoremap <space> za
-        " It wont work if using vim in a terminal
-        nnoremap <S-Space> :execute "normal! mf[zzAVzC`f"<cr>
+        " Use space to toggle the current fold
+            nnoremap <space> za
+            vnoremap <space> za
+        " Close the fold which the current fold in recursively
+        " If using gvim, it could be convenient 
+            nnoremap <S-Space> :execute "normal! mf[zzAVzC`f"<cr>
+            vnoremap <S-Space> :execute "normal! mf[zzAVzC`f"<cr>
+        " If using vim in a terminal, use this instead
+            nnoremap <leader><space> :execute "normal! mf[zzAVzC`f"<cr>
+            vnoremap <leader><space> :execute "normal! mf[zzAVzC`f"<cr>
     " }}}
 " }}}
 " Plugins  ------------------------------------------------------------------{{{
