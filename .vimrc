@@ -62,7 +62,7 @@
         let mapleader=","
         let maplocalleader="\\"
 	" }}}
-	" jump from one window to another----------------------------------------{{{
+	" Jump from one window to another----------------------------------------{{{
         nmap <C-H> <C-W>h
         nmap <C-J> <C-W>j
         nmap <C-K> <C-W>k
@@ -118,7 +118,7 @@
         " `f100zozz: back to mark "f", seems we need to open all the fold 
                     " 100 should be big enough
 	" }}}
-	" Highlight Word --------------------------------------------------------{{{
+	" Highlight word --------------------------------------------------------{{{
         " This mini-plugin provides a few mappings for highlighting words temporarily.
         " Sometimes you're looking at a hairy piece of code and would like a certain
         " word or two to stand out temporarily.  You can search for it, but that only
@@ -147,13 +147,24 @@
                 normal! `z
             endfunction " }}}
             " Mappings ------------------------------------------------------{{{
+                " Add highlighting
                 nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
                 nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
                 nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
                 nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
                 nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
                 nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+                " Delete highlighting
+                nnoremap <silent> <leader>d1 :call matchdelete(86751)<cr>
+                nnoremap <silent> <leader>d2 :call matchdelete(86752)<cr>
+                nnoremap <silent> <leader>d3 :call matchdelete(86753)<cr>
+                nnoremap <silent> <leader>d4 :call matchdelete(86754)<cr>
+                nnoremap <silent> <leader>d5 :call matchdelete(86755)<cr>
+                nnoremap <silent> <leader>d6 :call matchdelete(86756)<cr>
+                nnoremap <silent> <leader>dd :call clearmatches()<cr>
             " }}}
+            " The following part must after the colorscheme setting
+            " If not, copy it manually
             " Default Highlights --------------------------------------------{{{
                 hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
                 hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
@@ -167,7 +178,7 @@
         nnoremap H ^
         nnoremap L $
 	" }}}
-	" Use tab to jump between { & } --------------------------------------  -{{{
+	" Use tab to jump between { & } -----------------------------------------{{{
         nnoremap <Tab> %
 	" }}}
 	" Stop highlighting items from the last research ------------------------{{{
@@ -201,6 +212,7 @@
                 execute "normal! a\" {{"."{\<esc>hh"
                 let CurrentColumn=col('.')
                 execute "normal! i" . repeat('-',78-CurrentColumn)
+                execute "normal! " . repeat('h',77-CurrentColumn)
                 " Enter replace mode to add some plain text
                 execute "startreplace"
             endfunction
@@ -504,7 +516,16 @@
         set background=dark
         colorscheme molokai
 
-	" }}}
+        " The following part copy from key mapping-Highlighting words
+        " This part must be after colorscheme setting
+        " Default Highlights --------------------------------------------{{{
+            hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+            hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+            hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+            hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+            hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+            hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+        " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
 	" Foldmethod ------------------------------------------------------------{{{
