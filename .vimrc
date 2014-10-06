@@ -33,12 +33,10 @@
         set expandtab
         set backspace=2
 	" }}}
-	" Folding ---------------------------------------------------------------{{{
+	" Fold ------------------------------------------------------------------{{{
         set foldenable
         set foldlevelstart=0
         "setlocal foldlevel=0
-        nnoremap <Space> za
-        vnoremap <Space> za
             function! MyFoldText() " ----------------------------------------{{{
                 let line = getline(v:foldstart)
 
@@ -110,9 +108,9 @@
         nnoremap <leader>fs :set fdm=syntax<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
 	" }}}
 	" Close other fold recursively ------------------------------------------{{{
-        nnoremap  <leader>zc :execute "normal! mfggVGzC`f100zozz" <cr>
+        nnoremap  <leader>zc :execute "normal! mfzM`f100zozz" <cr>
         " mf:    set mark "f" at current position (hope you not using this mark)
-        " ggvGzC:    select all the text, close all folder recursively
+        " zM:    select all the text, close all folder recursively
         " `f100zozz: back to mark "f", seems we need to open all the folder 
                     " 100 should be big enough
 	" }}}
@@ -165,7 +163,7 @@
         nnoremap H ^
         nnoremap L $
 	" }}}
-	" Use space to jump between { & } ---------------------------------------{{{
+	" Use tab to jump between { & } --------------------------------------  -{{{
         nnoremap <Tab> %
 	" }}}
 	" Stop highlighting items from the last research ------------------------{{{
@@ -255,6 +253,12 @@
         nnoremap <leader>ac :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cword>")) <cr>
         nnoremap <leader>aC :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cWORD>")) . "<cr>"
     " " }}}
+    " Fold-------------------------------------------------------------------{{{
+        nnoremap <space> za
+        vnoremap <space> za
+        " It wont work if using vim in a terminal
+        nnoremap <S-Space> :execute "normal! mf[zzAVzC`f"<cr>
+    " }}}
 " }}}
 " Plugins  ------------------------------------------------------------------{{{
 	" Vundle ----------------------------------------------------------------{{{
