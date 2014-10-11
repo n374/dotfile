@@ -110,6 +110,7 @@
         nnoremap <leader>fmn :set fdm=manual<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
         nnoremap <leader>fi :set fdm=indent<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
         nnoremap <leader>fs :set fdm=syntax<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
+        nnoremap <leader>fe :set fdm=expr<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
 	" }}}
 	" Close other fold recursively ------------------------------------------{{{
         nnoremap  <leader>zc :execute "normal! mfzM`f100zozz" <cr>
@@ -163,7 +164,7 @@
                 nnoremap <silent> <leader>d6 :call matchdelete(86756)<cr>
                 nnoremap <silent> <leader>dd :call clearmatches()<cr>
             " }}}
-            " The following part must after the colorscheme setting
+            " !!!!!The following part must after the colorscheme setting
             " If not, copy it manually
             " Default Highlights --------------------------------------------{{{
                 hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
