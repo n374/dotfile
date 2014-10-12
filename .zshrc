@@ -84,7 +84,7 @@
     export TERM=xterm-256color
 # }}}
 # AutoJump -----------------------------------------------------------------{{{
-    [[ -s /usr/share/autojump/autojump.sh ]] & . /usr/share/autojump/autojump.sh
+    [[ -s /usr/share/autojump/autojump.zsh ]] & . /usr/share/autojump/autojump.zsh
 # }}}
 # Functions ----------------------------------------------------------------{{{
 #   Extract ----------------------------------------------------------------{{{
