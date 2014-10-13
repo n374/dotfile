@@ -512,6 +512,7 @@
         " Plugin 'altercation/vim-colors-solarized'
         set t_Co=256
 
+        set term=screen-256color
         let g:molokai_original = 1
         let g:rehash256 = 1
         set background=dark
