@@ -119,7 +119,7 @@
 #   Psg --------------------------------------------------------------------{{{
         psg () {
             ps -o pid,pmem,pcpu,command -A |grep -v grep|grep $1\
-                |awk '{printf "%-7s%-5s%-5s%-7s\n", $1,$2,$3,$4$5$6}'
+                |awk '{printf "%-7s%-5s%-5s%-7s\n", $1,$2,$3,$4" "$5" "$6}'
         
         }
 #   }}}
@@ -189,9 +189,9 @@
 #   }}}
 #   Show the top 15 progress that gobbling the memory and CPU---------------{{{
         alias psm="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 2 | head -15 \
-            | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\$5\$6}'"
+            | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
         alias psu="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 3 | head -15 \
-            | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\$5\$6}'"
+            | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
 #   }}}
 #   Just for fun -----------------------------------------------------------{{{
         alias please="sudo"
