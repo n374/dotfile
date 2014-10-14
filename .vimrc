@@ -268,7 +268,7 @@
     " }}}
     " Ack--------------------------------------------------------------------{{{
         nnoremap <leader>ac :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cword>")) <cr>
-        nnoremap <leader>aC :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cWORD>")) . "<cr>"
+        nnoremap <leader>aC :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cWORD>"))<cr>
     " " }}}
     " Fold-------------------------------------------------------------------{{{
         " Use space to toggle the current fold
@@ -510,7 +510,6 @@
 	" Theme -----------------------------------------------------------------{{{
         Plugin 'tomasr/molokai'
         " Plugin 'altercation/vim-colors-solarized'
-        set t_Co=256
 
         set term=screen-256color
         let g:molokai_original = 1
