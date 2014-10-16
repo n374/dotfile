@@ -80,6 +80,9 @@
     # alias zshconfig="mate ~/.zshrc"
     # alias ohmyzsh="mate ~/.oh-my-zsh"
 # }}}
+# This for vim theme in tmux -----------------------------------------------{{{
+    export TERM=xterm-256color
+# }}}
 # AutoJump -----------------------------------------------------------------{{{
     [[ -s /usr/share/autojump/autojump.zsh ]] & . /usr/share/autojump/autojump.zsh
 # }}}

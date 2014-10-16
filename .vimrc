@@ -511,7 +511,6 @@
         Plugin 'tomasr/molokai'
         " Plugin 'altercation/vim-colors-solarized'
 
-        set term=screen-256color
         let g:molokai_original = 1
         let g:rehash256 = 1
         set background=dark
