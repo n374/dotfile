@@ -267,8 +267,8 @@
         " }}}
     " }}}
     " Ack--------------------------------------------------------------------{{{
-        nnoremap <leader>ac :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cword>")) <cr>
-        nnoremap <leader>aC :silent execute "Ack! --ignore-dir=doc " .  shellescape(expand("<cWORD>"))<cr>
+        nnoremap <leader>ac :silent execute "Ack! --ignore-dir=doc --ignore-file=is:tags " .  shellescape(expand("<cword>")) <cr>
+        nnoremap <leader>aC :silent execute "Ack! --ignore-dir=doc --ignore-file=is:tags " .  shellescape(expand("<cWORD>"))<cr>
     " " }}}
     " Fold-------------------------------------------------------------------{{{
         " Use space to toggle the current fold
@@ -511,6 +511,7 @@
         Plugin 'tomasr/molokai'
         " Plugin 'altercation/vim-colors-solarized'
 
+        set term=screen-256color
         let g:molokai_original = 1
         let g:rehash256 = 1
         set background=dark
@@ -526,6 +527,7 @@
             hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
             hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
         " }}}
+    " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
 	" Foldmethod ------------------------------------------------------------{{{
