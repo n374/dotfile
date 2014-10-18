@@ -366,7 +366,6 @@
 	" EasyMotion ------------------------------------------------------------{{{
         " Move like open urls by Vimium in Chrome
         Bundle 'Lokaltog/vim-easymotion'
-        map <Leader> <Plug>(easymotion-prefix)
 	" }}}
 	" CtrlP -----------------------------------------------------------------{{{
         Bundle "kien/ctrlp.vim"
@@ -537,6 +536,7 @@
         autocmd! Filetype python set foldexpr=MyFoldMethodForPython(v:lnum)
         autocmd! Filetype c set foldmethod=indent
         autocmd! Filetype nerdtree nnoremap <buffer> <space> o
+        autocmd! Filetype taglist set nonumber norelativenumber
         function! MyFoldMethodForPython(lnum) " -----------------------------{{{
             " If current line is blank or only spaces, return special key "-1"
             if getline(a:lnum) =~# '\v^\s*$'
