@@ -354,15 +354,6 @@
 	" Syntastic -------------------------------------------------------------{{{
         Bundle "scrooloose/syntastic"
 	" }}}
-	" TagList ---------------------------------------------------------------{{{
-        Bundle "vim-scripts/taglist.vim"
-        " If taglist is the only window, close it
-        let Tlist_Exit_OnlyWindow = 1
-        " Show taglist window in the right side
-        let Tlist_Use_Right_Window = 1
-        filetype plugin on
-        map <F4> :TlistToggle<cr>
-	" }}}
 	" EasyMotion ------------------------------------------------------------{{{
         " Move like open urls by Vimium in Chrome
         Bundle 'Lokaltog/vim-easymotion'
@@ -501,7 +492,8 @@
              "}}}
 	" }}}
 	" TabBar ----------------------------------------------------------------{{{
-        "Plugin 'humiaozuzu/TabBar'
+        Plugin 'majutsushi/tagbar'
+        map <F4> :TagbarToggle<cr>
 	" }}}
     " Fcitx.vim--------------------------------------------------------------{{{
         Plugin 'fcitx.vim'
@@ -536,7 +528,6 @@
         autocmd! Filetype python set foldexpr=MyFoldMethodForPython(v:lnum)
         autocmd! Filetype c set foldmethod=indent
         autocmd! Filetype nerdtree nnoremap <buffer> <space> o
-        autocmd! Filetype taglist set nonumber norelativenumber
         function! MyFoldMethodForPython(lnum) " -----------------------------{{{
             " If current line is blank or only spaces, return special key "-1"
             if getline(a:lnum) =~# '\v^\s*$'
