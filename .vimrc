@@ -14,8 +14,8 @@
 	" Syntax Highlight ------------------------------------------------------{{{
         syntax on
 	" }}}
-	" Auto warp the line in 80 character ------------------------------------{{{
-        set tw=80
+	" Auto wrap the line in 80 character ------------------------------------{{{
+        set textwidth=80
         set formatoptions=tnmM
 	" }}}
 	" Search ----------------------------------------------------------------{{{
@@ -282,6 +282,10 @@
             nnoremap <leader><space> :execute "normal! mf[zzAVzC`f"<cr>
             vnoremap <leader><space> :execute "normal! mf[zzAVzC`f"<cr>
     " }}}
+    " Copy to/Paste from system's clipboard----------------------------------{{{
+        vnoremap <c-c> "+y
+        inoremap <c-v> <esc>"+p
+    " }}}
 " }}}
 " Plugins  ------------------------------------------------------------------{{{
 	" Vundle ----------------------------------------------------------------{{{
@@ -518,6 +522,17 @@
             hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
             hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
         " }}}
+    " }}}
+    " Snipmate---------------------------------------------------------------{{{
+        Bundle "MarcWeber/vim-addon-mw-utils"
+        Bundle "tomtom/tlib_vim"
+        Bundle "garbas/vim-snipmate"
+        Bundle "honza/vim-snippets"
+        " If a word triggered YouCompleteme list the completion
+        " candidates, snipmate won't work. Enter normal mode and
+        " back to insert mode, completion list will disappear
+        " and snipmate works
+        imap M <esc>a<Plug>snipMateNextOrTrigger
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
