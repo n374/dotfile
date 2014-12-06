@@ -86,6 +86,12 @@
 # AutoJump -----------------------------------------------------------------{{{
     [[ -s /usr/share/autojump/autojump.zsh ]] & . /usr/share/autojump/autojump.zsh
 # }}}
+# Configuration-------------------------------------------------------------{{{
+#   Set grep color the always-----------------------------------------------{{{
+        # To enable highlighting when outpu is a pipe
+        export GREP_OPTIONS="--color=always"
+#   }}}
+# }}}
 # Functions ----------------------------------------------------------------{{{
 #   Extract ----------------------------------------------------------------{{{
 #       From alias.sh
