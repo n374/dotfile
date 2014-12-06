@@ -159,6 +159,13 @@
             done
         }
 #   }}}
+#   Run the previous cmd and grep the output then pip to less --------------{{{
+        ge () {
+            if [ $# -ne 0 ] ; then
+                `fc -ln -1` | grep $* | nl | less
+            fi
+        }
+#   " }}}
 # }}}
 # Alias --------------------------------------------------------------------{{{
 #   Source & edit zshrc ----------------------------------------------------{{{
@@ -201,5 +208,11 @@
 #   }}}
 #   Clear ------------------------------------------------------------------{{{
         alias c="clear"
+#   }}}
+#   Run the previous cmd and pipe the output to less with line number added-{{{
+        alias le='`fc -ln -1` | nl | less'
+#   }}}
+#   Run the previous cmd and grep the output--------------------------------{{{
+        alias gr='`fc -ln -1` | grep'
 #   }}}
 # }}} 
