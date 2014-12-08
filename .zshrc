@@ -1,4 +1,4 @@
-# Oh-my-zsh things-----------------------------------------------------------{{{
+# Oh-my-zsh things----------------------------------------------------------{{{
     # Path to your oh-my-zsh installation.
     export ZSH=$HOME/.oh-my-zsh
 
@@ -83,10 +83,10 @@
 # This for vim theme in tmux -----------------------------------------------{{{
     export TERM=xterm-256color
 # }}}
-# AutoJump -----------------------------------------------------------------{{{
-    [[ -s /usr/share/autojump/autojump.zsh ]] & . /usr/share/autojump/autojump.zsh
-# }}}
 # Configuration-------------------------------------------------------------{{{
+#   AutoJump ---------------------------------------------------------------{{{
+        [[ -s /usr/share/autojump/autojump.zsh ]] & . /usr/share/autojump/autojump.zsh
+# }}}
 #   Set grep color the always-----------------------------------------------{{{
         # To enable highlighting when outpu is a pipe
         export GREP_OPTIONS="--color=always"
@@ -172,6 +172,29 @@
             fi
         }
 #   " }}}
+#   Expand alias------------------------------------------------------------{{{
+        # When input space, expand alias -----------------------------------{{{
+        expand_alias_space () {
+            zle _expand_alias
+            zle self-insert
+        }
+        zle -N expand_alias_space
+        bindkey " " expand_alias_space
+        # }}}
+        # When input space, expand alias -----------------------------------{{{
+        expand_alias_enter () {
+            if [[ -z $BUFFER ]]
+            then
+                zle clear-screen
+            else 
+                zle _expand_alias
+                zle accept-line
+            fi
+        }
+        zle -N expand_alias_enter
+        bindkey "^M" expand_alias_enter
+        # }}}
+#   }}}
 # }}}
 # Alias --------------------------------------------------------------------{{{
 #   Source & edit zshrc ----------------------------------------------------{{{
@@ -212,8 +235,8 @@
 #   Colorfull cat ----------------------------------------------------------{{{
         alias ccat='pygmentize -O bg=dark'
 #   }}}
-#   Clear ------------------------------------------------------------------{{{
-        alias c="clear"
+#   Ack --------------------------------------------------------------------{{{
+        alias ack="ack-grep"
 #   }}}
 #   Run the previous cmd and pipe the output to less with line number added-{{{
         alias le='`fc -ln -1` | nl | less'
