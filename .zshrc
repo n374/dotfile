@@ -80,16 +80,42 @@
     # alias zshconfig="mate ~/.zshrc"
     # alias ohmyzsh="mate ~/.oh-my-zsh"
 # }}}
-# This for vim theme in tmux -----------------------------------------------{{{
-    export TERM=xterm-256color
-# }}}
 # Configuration-------------------------------------------------------------{{{
 #   AutoJump ---------------------------------------------------------------{{{
         [[ -s /usr/share/autojump/autojump.zsh ]] & . /usr/share/autojump/autojump.zsh
 # }}}
-#   Set grep color the always-----------------------------------------------{{{
+#   This for vim theme in tmux ---------------------------------------------{{{
+        export TERM=xterm-256color
+#   }}}
+#   Set grep color to always -----------------------------------------------{{{
         # To enable highlighting when outpu is a pipe
         export GREP_OPTIONS="--color=always"
+#   }}}
+#   Vi mode and emacs key binding ------------------------------------------{{{
+    # http://dougblack.io/words/zsh-vi-mode.html
+        bindkey -v
+        # Show [normal] when enter normal mode
+        function zle-line-init zle-keymap-select {
+            # SET VIM_PROMPT to "[normal]" with color set to green
+            VIM_PROMPT="%{$fg[green]%} [% NORMAL]% %{$reset_color%}"
+            # ${VARIABLE/PATTERN/REPLACEMENT} means if VARIABLE match the
+            # PATTERN, replace it with REPLACEMENT. So the line below means
+            # if KEYMAP is currently set to vicmd(command mode), change it to
+            # VIM_PROMPT, if match main or viins, replace nothing
+            RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+            # Redraw the current prompt
+            zle reset-prompt
+        }
+        zle -N zle-line-init
+        zle -N zle-keymap-select
+        # Going up and down the history list
+        bindkey '^P' up-history
+        bindkey '^N' down-history
+        # Delete a char or a word backward
+        bindkey '^h' backward-delete-char
+        bindkey '^w' backward-kill-word
+        # Searching history backward
+        bindkey '^R' history-incremental-search-backward
 #   }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
@@ -115,7 +141,7 @@
                  echo "'$1' is not a valid file"
              fi
         }
-#   }}} 
+#   }}}
 #   Ltree ------------------------------------------------------------------{{{
         ltree()
         {
@@ -126,7 +152,6 @@
         psg () {
             ps -o pid,pmem,pcpu,command -A |grep -v grep|grep $1\
                 |awk '{printf "%-7s%-5s%-5s%-7s\n", $1,$2,$3,$4" "$5" "$6}'
-        
         }
 #   }}}
 #   Lc ---------------------------------------------------------------------{{{
@@ -153,14 +178,14 @@
                 mplayer http://dict.youdao.com/dictvoice\?audio\=$param > /dev/null 2>&1
                 return
             done
-            # Translate every word user input which separated by spaces 
+            # Translate every word user input which separated by spaces
             while true; do
                 echo -n ">>>"
                 read words
                 for word in $(echo $words); do
                     echo "-----------------------------------------------------"
                     dict $word
-                    mplayer http://dict.youdao.com/dictvoice\?audio\=$word   > /dev/null 2>&1 >&- 
+                    mplayer http://dict.youdao.com/dictvoice\?audio\=$word   > /dev/null 2>&1 >&-
                 done
             done
         }
@@ -171,7 +196,7 @@
                 `fc -ln -1` | grep $* | nl | less
             fi
         }
-#   " }}}
+#   }}}
 #   Expand alias------------------------------------------------------------{{{
         # When input space, expand alias -----------------------------------{{{
         expand_alias_space () {
@@ -181,12 +206,12 @@
         zle -N expand_alias_space
         bindkey " " expand_alias_space
         # }}}
-        # When input space, expand alias -----------------------------------{{{
+        # When input enter, expand alias -----------------------------------{{{
         expand_alias_enter () {
             if [[ -z $BUFFER ]]
             then
                 zle clear-screen
-            else 
+            else
                 zle _expand_alias
                 zle accept-line
             fi
@@ -244,4 +269,4 @@
 #   Run the previous cmd and grep the output--------------------------------{{{
         alias gr='`fc -ln -1` | grep'
 #   }}}
-# }}} 
+# }}}
