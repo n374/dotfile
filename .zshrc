@@ -193,7 +193,7 @@
 #   Run the previous cmd and grep the output then pip to less --------------{{{
         ge () {
             if [ $# -ne 0 ] ; then
-                `fc -ln -1` | grep $* | nl | less
+                eval $LAST_COMMAND | grep $* | nl | less
             fi
         }
 #   }}}
@@ -214,6 +214,11 @@
             else
                 zle _expand_alias
                 zle accept-line
+                # Remember the last command, useful in some alias
+                # Add space at the beginning of a command, this command won't
+                # show up in history, so use variables to store the command
+                LAST_COMMAND=$CURRENT_COMMAND
+                CURRENT_COMMAND=$BUFFER
             fi
         }
         zle -N expand_alias_enter
@@ -264,9 +269,6 @@
         alias ack="ack-grep"
 #   }}}
 #   Run the previous cmd and pipe the output to less with line number added-{{{
-        alias le='`fc -ln -1` | nl | less'
-#   }}}
-#   Run the previous cmd and grep the output--------------------------------{{{
-        alias gr='`fc -ln -1` | grep'
+        alias le='eval $LAST_COMMAND | nl | less'
 #   }}}
 # }}}
