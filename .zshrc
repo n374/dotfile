@@ -108,9 +108,10 @@
         }
         zle -N zle-line-init
         zle -N zle-keymap-select
-        # Going up and down the history list
-        bindkey '^P' up-history
-        bindkey '^N' down-history
+        # Bindkey to search in history for a line beginning with the current
+        # line up to the cursor, and leaves the cursor in its original position
+        bindkey '^P' history-beginning-search-backward
+        bindkey '^N' history-beginning-search-forward
         # Delete a char or a word backward
         bindkey '^h' backward-delete-char
         bindkey '^w' backward-kill-word
