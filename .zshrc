@@ -87,10 +87,6 @@
 #   This for vim theme in tmux ---------------------------------------------{{{
         export TERM=xterm-256color
 #   }}}
-#   Set grep color to always -----------------------------------------------{{{
-        # To enable highlighting when outpu is a pipe
-        export GREP_OPTIONS="--color=always"
-#   }}}
 #   Vi mode and emacs key binding ------------------------------------------{{{
     # http://dougblack.io/words/zsh-vi-mode.html
         bindkey -v
