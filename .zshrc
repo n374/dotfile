@@ -114,6 +114,10 @@
         # Searching history backward
         bindkey '^R' history-incremental-search-backward
 #   }}}
+#   Set vim as the default editor-------------------------------------------{{{
+        export VISUAL=vim
+        export EDITOR="$VISUAL"
+#    }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
 #   Extract ----------------------------------------------------------------{{{
