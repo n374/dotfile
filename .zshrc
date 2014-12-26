@@ -222,6 +222,12 @@
         bindkey "^M" expand_alias_enter
         # }}}
 #   }}}
+#   Enter a dir contains $1-------------------------------------------------{{{
+    # Stolen from https://github.com/fcoury/dotfiles-1/blob/master/.zshrc
+        function cdf () {
+            cd *$1*/
+        }
+#   }}}
 # }}}
 # Alias --------------------------------------------------------------------{{{
 #   Source & edit zshrc ----------------------------------------------------{{{
