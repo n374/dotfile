@@ -46,7 +46,7 @@
     # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
     # Example format: plugins=(rails git textmate ruby lighthouse)
     # Add wisely, as too many plugins slow down shell startup.
-    plugins=(git)
+    plugins=(git colored-man)
 
     source $ZSH/oh-my-zsh.sh
 
@@ -118,6 +118,27 @@
         export VISUAL=vim
         export EDITOR="$VISUAL"
 #    }}}
+#   Use EscEsc to sudo the last command or the current command--------------{{{
+        sudo-command-line() {
+            # If current buffer is empth, get the last command
+            [[ -z $BUFFER ]] && zle up-history
+            # If the command not start with sudo
+            [[ $BUFFER != sudo\ * ]] && {
+              typeset -a bufs
+              bufs=(${(z)BUFFER})
+              # If the first word in BUFFER is an alias, replace is with
+              # it's value
+              if (( $+aliases[$bufs[1]] )); then
+                bufs[1]=$aliases[$bufs[1]]
+              fi
+              bufs=(sudo $bufs)
+              BUFFER=$bufs
+            }
+            zle end-of-line
+        }
+        zle -N sudo-command-line
+        bindkey "\e\e" sudo-command-line
+#   }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
 #   Extract ----------------------------------------------------------------{{{
@@ -265,9 +286,6 @@
             | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
         alias psu="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 3 | head -15 \
             | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
-#   }}}
-#   Just for fun -----------------------------------------------------------{{{
-        alias please="sudo"
 #   }}}
 #   Colorfull cat ----------------------------------------------------------{{{
         alias ccat='pygmentize -O bg=dark'
