@@ -254,6 +254,15 @@
             cd *$1*/
         }
 #   }}}
+#   Run the last command and pip the output to less-------------------------{{{
+        le() {
+            CURRENT_COMMAND="`echo $LAST_COMMAND` | less "
+            eval $CURRENT_COMMAND
+            # Pipe to less didn't change anything and may case some problem
+            # when run this command twice. So we delete that part.
+            CURRENT_COMMAND="`echo $LAST_COMMAND`"
+        }
+#   }}}
 # }}}
 # Alias --------------------------------------------------------------------{{{
 #   Source & edit zshrc ----------------------------------------------------{{{
@@ -293,8 +302,5 @@
 #   }}}
 #   Ack --------------------------------------------------------------------{{{
         alias ack="ack-grep"
-#   }}}
-#   Run the previous cmd and pipe the output to less with line number added-{{{
-        alias le='eval $LAST_COMMAND | nl | less'
 #   }}}
 # }}}
