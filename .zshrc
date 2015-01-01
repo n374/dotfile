@@ -215,7 +215,8 @@
 #   Run the previous cmd and grep the output then pip to less --------------{{{
         ge () {
             if [ $# -ne 0 ] ; then
-                eval $LAST_COMMAND | grep $* | nl | less
+                CURRENT_COMMAND="`echo $LAST_COMMAND` | grep $*"
+                eval $CURRENT_COMMAND
             fi
         }
 #   }}}
