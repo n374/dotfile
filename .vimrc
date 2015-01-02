@@ -534,7 +534,7 @@
         " candidates, snipmate won't work. Enter normal mode and
         " back to insert mode, completion list will disappear
         " and snipmate works
-        imap <leader><space> <esc>a<Plug>snipMateNextOrTrigger
+        imap <c-j> <esc>a<Plug>snipMateNextOrTrigger
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
