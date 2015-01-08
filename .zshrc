@@ -153,7 +153,7 @@
 #   Ltree ------------------------------------------------------------------{{{
         ltree()
         {
-            tree -C $* | less -R
+            tree -C $* | less -FXRS
         }
 #   }}}
 #   Psg --------------------------------------------------------------------{{{
@@ -164,7 +164,7 @@
 #   }}}
 #   Lc ---------------------------------------------------------------------{{{
         lc () {
-            pygmentize -O bg=dark $1|less
+            pygmentize -O bg=dark $1|less -FXRS
         }
 #   }}}
 #   Mydict -----------------------------------------------------------------{{{
@@ -242,7 +242,7 @@
 #   }}}
 #   Run the last command and pip the output to less-------------------------{{{
         le() {
-            CURRENT_COMMAND="`echo $LAST_COMMAND` | less "
+            CURRENT_COMMAND="`echo $LAST_COMMAND` | less -FXRS"
             eval $CURRENT_COMMAND
             # Pipe to less didn't change anything and may case some problem
             # when run this command twice. So we delete that part.
