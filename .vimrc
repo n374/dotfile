@@ -183,7 +183,7 @@
         nnoremap <Tab> %
 	" }}}
 	" Stop highlighting items from the last research ------------------------{{{
-        nnoremap <leader>sh :nohlsearch<cr>
+        nnoremap <CR> :nohlsearch<cr>
 	" }}}
 	" Grep ------------------------------------------------------------------{{{
         nnoremap <leader>gi :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
