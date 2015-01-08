@@ -87,32 +87,18 @@
 #   This for vim theme in tmux ---------------------------------------------{{{
         export TERM=xterm-256color
 #   }}}
-#   Vi mode and emacs key binding ------------------------------------------{{{
-    # http://dougblack.io/words/zsh-vi-mode.html
-        bindkey -v
-        # Show [normal] when enter normal mode
-        function zle-line-init zle-keymap-select {
-            # SET VIM_PROMPT to "[normal]" with color set to green
-            VIM_PROMPT="%{$fg[green]%} [% NORMAL]% %{$reset_color%}"
-            # ${VARIABLE/PATTERN/REPLACEMENT} means if VARIABLE match the
-            # PATTERN, replace it with REPLACEMENT. So the line below means
-            # if KEYMAP is currently set to vicmd(command mode), change it to
-            # VIM_PROMPT, if match main or viins, replace nothing
-            RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-            # Redraw the current prompt
-            zle reset-prompt
-        }
-        zle -N zle-line-init
-        zle -N zle-keymap-select
-        # Bindkey to search in history for a line beginning with the current
-        # line up to the cursor, and leaves the cursor in its original position
-        bindkey '^P' up-line-or-search
-        bindkey '^N' down-line-or-search
-        # Delete a char or a word backward
-        bindkey '^h' backward-delete-char
-        bindkey '^w' backward-kill-word
-        # Searching history backward
-        bindkey '^R' history-incremental-search-backward
+#   Emacs key binding ------------------------------------------{{{
+    bindkey '^P' up-line-or-search
+    bindkey '^N' down-line-or-search
+    bindkey '^J' backward-char
+    bindkey '^K' forward-char
+    bindkey '^H' backward-delete-char
+    bindkey '^L' delete-char
+    bindkey '^W' backward-kill-word
+    bindkey '^D' kill-word
+    bindkey '^F' forward-word
+    bindkey '^B' backward-word
+    bindkey '^R' history-incremental-search-backward
 #   }}}
 #   Set vim as the default editor-------------------------------------------{{{
         export VISUAL=vim
@@ -292,10 +278,8 @@
         alias dl="dpkg -l"
 #   }}}
 #   Show the top 15 progress that gobbling the memory and CPU---------------{{{
-        alias psm="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 2 | head -15 \
-            | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
-        alias psu="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 3 | head -15 \
-            | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
+        alias psm="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 2 | head -15 | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
+        alias psu="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 3 | head -15 | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
 #   }}}
 #   Colorfull cat ----------------------------------------------------------{{{
         alias ccat='pygmentize -O bg=dark'
