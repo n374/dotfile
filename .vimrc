@@ -28,7 +28,7 @@
     " }}}
 	" Tab=4 space -----------------------------------------------------------{{{
         set ts=4
-        set shiftwidth=4 
+        set shiftwidth=4
         set tabstop=4
         set expandtab
         set backspace=2
@@ -75,16 +75,16 @@
         noremap <silent> <leader>ss :source ~/.vimrc<cr>:echom "vimrc sourced"<cr>
 	" }}}
 	" Fast editing ----------------------------------------------------------{{{
-	    " Edit the specific file in current window --------------------------{{{
+        " Edit the specific file in current window --------------------------{{{
             nnoremap <leader>v :e ~/.vimrc<cr>
             nnoremap <leader>z :e ~/.zshrc<cr>
-	    " }}}
-	    " Edit the specific file in a new tab -------------------------------{{{
+        " }}}
+        " Edit the specific file in a new tab -------------------------------{{{
             nnoremap <leader>tv :tabnew ~/.vimrc<cr>
             nnoremap <leader>tz :tabnew ~/.zshrc<cr>
-	    " }}}
+        " }}}
         " Split the current window and load the specific file ---------------{{{
-            nnoremap <leader>sv :split ~/.vimrc<cr>  
+            nnoremap <leader>sv :split ~/.vimrc<cr>
             nnoremap <leader>sz :split ~/.zshrc<cr>
         " }}}
         " Split the current window vertically and load the specific file ----{{{
@@ -95,12 +95,12 @@
 	" Searching -------------------------------------------------------------{{{
         nnoremap <leader>si :execute '/' . expand("<cword>")<cr>
         nnoremap <leader>sa :execute '/' . expand("<cWORD>")<cr>
-        " Keep search matches in the middle 
-        " of the window and pulse the line when 
+        " Keep search matches in the middle
+        " of the window and pulse the line when
         " moving to them.
             nnoremap n nzzzv
             nnoremap N Nzzzv
-        " After search something, you can jump back the line by using 's or 
+        " After search something, you can jump back the line by using 's or
         " jump back to exact postion by using `s
             nnoremap / ms/
             nnoremap ? ms?
@@ -116,7 +116,7 @@
         nnoremap  <leader>zc :execute "normal! mfzM`f100zozz" <cr>
         " mf:    set mark "f" at current position (hope you not using this mark)
         " zM:    select all the text, close all fold recursively
-        " `f100zozz: back to mark "f", seems we need to open all the fold 
+        " `f100zozz: back to mark "f", seems we need to open all the fold
                     " 100 should be big enough
 	" }}}
 	" Highlight word --------------------------------------------------------{{{
@@ -196,14 +196,14 @@
         " For normal mode ---------------------------------------------------{{{
             nnoremap <leader>am :call AddMarkerNormalMode()<cr>
             function! AddMarkerNormalMode() " -------------------------------{{{
-                " Get the indentation 
+                " Get the indentation
                 let IndentLevel=indent('.')/&tabstop
                 let IndentInsert=repeat("\<tab>",IndentLevel)
                 " Add the second half of marker to a new line
                 execute "normal! o".'" }}'.'}'
                 if getline('.')=~'\v^ *$'
                     " If this function called from a blank line
-                    " just jump to it for first part of marker 
+                    " just jump to it for first part of marker
                     execute "normal! k0C".IndentInsert
                 else
                     " Add a new line for first part of marker
@@ -275,7 +275,7 @@
             nnoremap <space> za
             vnoremap <space> za
         " Close the fold which the current fold in recursively
-        " If using gvim, it could be convenient 
+        " If using gvim, it could be convenient
             nnoremap <S-Space> :execute "normal! mf[zzAVzC`f"<cr>
             vnoremap <S-Space> :execute "normal! mf[zzAVzC`f"<cr>
         " If using vim in a terminal, use this instead
@@ -321,9 +321,10 @@
 " }}}
 	" vim-powerline ---------------------------------------------------------{{{
         " Show the statusline
-        Bundle "Lokaltog/vim-powerline"
+        Bundle "bling/vim-airline"
         set laststatus=2
-        let g:Powerline_symbols='unicode'
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline_powerline_fonts = 1
 " }}}
 	" RainbowParentheses ----------------------------------------------------{{{
         Bundle "kien/rainbow_parentheses.vim"
@@ -337,7 +338,7 @@
 	" YouCompleteMe ---------------------------------------------------------{{{
         Bundle 'Valloric/YouCompleteMe'
         "Close the warning of -----------------------------------------------{{{
-            " ValueError: Still no compile flags, no completions yet" 
+            " ValueError: Still no compile flags, no completions yet"
             let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
         " }}}
 	" }}}
@@ -352,7 +353,7 @@
         map <F3> :NERDTreeToggle<cr>
 	" }}}
 	" IndentLine ------------------------------------------------------------{{{
-        " Display vertical lines at indentation level 
+        " Display vertical lines at indentation level
         Bundle "Yggdroot/indentLine"
         let g:indentLine_char = '┆'
         let g:indentLine_color_term = 239
@@ -370,7 +371,7 @@
         let g:ctrlp_cmd = 'CtrlP'
 	" }}}
 	" Nerdcommenter ---------------------------------------------------------{{{
-        Bundle "scrooloose/nerdcommenter" 
+        Bundle "scrooloose/nerdcommenter"
             " Usage ----------------------------------------------------------{{{
                 "[count]<leader>cc |NERDComComment|
                 "Comment out the current line or text selected in visual mode.
@@ -426,45 +427,45 @@
         Bundle "vim-scripts/SrcExpl"
         nmap <C-I> <C-W>j:call g:SrcExpl_Jump()<CR>
         nmap <C-O> :call g:SrcExpl_GoBack()<CR>
-        " // The switch of the Source Explorer 
-        nmap <F8> :SrcExplToggle<CR> 
+        " // The switch of the Source Explorer
+        nmap <F8> :SrcExplToggle<CR>
 
-        " // Set the height of Source Explorer window 
-        let g:SrcExpl_winHeight = 15 
+        " // Set the height of Source Explorer window
+        let g:SrcExpl_winHeight = 15
 
-        " // Set 100 ms for refreshing the Source Explorer 
-        let g:SrcExpl_refreshTime = 100 
+        " // Set 100 ms for refreshing the Source Explorer
+        let g:SrcExpl_refreshTime = 100
 
-        " // Set "Enter" key to jump into the exact definition context 
-        " let g:SrcExpl_jumpKey = "<ENTER>" 
+        " // Set "Enter" key to jump into the exact definition context
+        " let g:SrcExpl_jumpKey = "<ENTER>"
 
-        " // Set "Space" key for back from the definition context 
+        " // Set "Space" key for back from the definition context
         " Conflit with the fold key, chang "space" key to anything else
-        let g:SrcExpl_gobackKey = "<nop>" 
+        let g:SrcExpl_gobackKey = "<nop>"
 
-        " // In order to Avoid conflicts, the Source Explorer should know what plugins 
-        " // are using buffers. And you need add their bufname into the list below 
-        " // according to the command ":buffers!" 
-        let g:SrcExpl_pluginList = [ 
-                \ "__Tag_List__", 
-                \ "_NERD_tree_", 
-                \ "Source_Explorer" 
-            \ ] 
+        " // In order to Avoid conflicts, the Source Explorer should know what plugins
+        " // are using buffers. And you need add their bufname into the list below
+        " // according to the command ":buffers!"
+        let g:SrcExpl_pluginList = [
+                \ "__Tag_List__",
+                \ "_NERD_tree_",
+                \ "Source_Explorer"
+            \ ]
 
-        " // Enable/Disable the local definition searching, and note that this is not 
-        " // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
-        " // It only searches for a match with the keyword according to command 'gd' 
-        let g:SrcExpl_searchLocalDef = 1 
+        " // Enable/Disable the local definition searching, and note that this is not
+        " // guaranteed to work, the Source Explorer doesn't check the syntax for now.
+        " // It only searches for a match with the keyword according to command 'gd'
+        let g:SrcExpl_searchLocalDef = 1
 
-        " // Do not let the Source Explorer update the tags file when opening 
-        let g:SrcExpl_isUpdateTags = 0 
+        " // Do not let the Source Explorer update the tags file when opening
+        let g:SrcExpl_isUpdateTags = 0
 
-        " // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
-        " //  create/update a tags file 
-        let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+        " // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to
+        " //  create/update a tags file
+        let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
 
-        " // Set "<F12>" key for updating the tags file artificially 
-        "let g:SrcExpl_updateTagsKey = "<F12>" 
+        " // Set "<F12>" key for updating the tags file artificially
+        "let g:SrcExpl_updateTagsKey = "<F12>"
 
         " SrcExpl will map <Tab> to <C-W>j:call g:SrcExpl_Jump()<CR>
         " Unmap it and map it to whatever you want to map
@@ -541,7 +542,7 @@
 	" Foldmethod ------------------------------------------------------------{{{
         autocmd! Filetype vim set foldmethod=marker
         autocmd! Filetype zsh set foldmethod=marker
-        autocmd! Filetype python set foldmethod=expr   
+        autocmd! Filetype python set foldmethod=expr
         autocmd! Filetype python set foldexpr=MyFoldMethodForPython(v:lnum)
         autocmd! Filetype c set foldmethod=indent
         autocmd! Filetype nerdtree nnoremap <buffer> <space> o
@@ -552,7 +553,7 @@
             endif
             " Get indent of current line
             let this_indent = indent(a:lnum)/&tabstop
-            
+
             let numlines = line('$')
             let nextline = a:lnum + 1
             " If current is the last line of current file, return "-2"
@@ -572,7 +573,7 @@
                 " If we reached the last line, assume the indent if "-2"
                 if nextline == numlines
                     let next_indent = -2
-                endif 
+                endif
             endwhile
 
             " If two line at the same level, just return it
