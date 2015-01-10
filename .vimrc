@@ -1,39 +1,40 @@
 " General -------------------------------------------------------------------{{{
-	" Set Indent ------------------------------------------------------------{{{
+    " Set Indent ------------------------------------------------------------{{{
         set autoindent "Preserve current indent on new lines
         set cindent "Set C style indent
-	" }}}
-	" Show line number and relative number ----------------------------------{{{
+    " }}}
+    " Show line number and relative number ----------------------------------{{{
         set number
         set relativenumber
-	" }}}
-	" Highlight current line and column -------------------------------------{{{
+    " }}}
+    " Highlight current line and column -------------------------------------{{{
         set cursorcolumn
         set cursorline
-	" }}}
-	" Syntax Highlight ------------------------------------------------------{{{
+    " }}}
+    " Syntax Highlight ------------------------------------------------------{{{
         syntax on
-	" }}}
-	" Auto wrap the line in 80 character ------------------------------------{{{
+    " }}}
+    " Auto wrap the line in 80 character ------------------------------------{{{
         set textwidth=80
         set formatoptions=tnmM
-	" }}}
-	" Search ----------------------------------------------------------------{{{
-        " Highlight search ---------------------------------------------------{{{
+    " }}}
+    " Search ----------------------------------------------------------------{{{
+        " Highlight search --------------------------------------------------{{{
         set hlsearch
         " }}}
         " Highlight the next match while still typing out the search pattern {{{
         set incsearch
         " }}}
     " }}}
-	" Tab=4 space -----------------------------------------------------------{{{
+    " Tab=4 space -----------------------------------------------------------{{{
         set ts=4
         set shiftwidth=4
         set tabstop=4
+        set softtabstop=4
         set expandtab
         set backspace=2
-	" }}}
-	" Fold ------------------------------------------------------------------{{{
+    " }}}
+    " Fold ------------------------------------------------------------------{{{
         set foldenable
         set foldlevelstart=0
         "setlocal foldlevel=0
@@ -56,25 +57,38 @@
             endfunction " }}}
         set foldtext=MyFoldText()
     " }}}
+    " Show incomplete commands in the last line of screen--------------------{{{
+        set showcmd
+    " }}}
+    " Minimal number of screen lines to keep above and below the cursor------{{{
+        set scrolloff=5
+    " }}}
+    " Show Tabs Enter and trailing blanks------------------------------------{{{
+        set list listchars=eol:¬,tab:>\ ,trail:.,
+    " }}}
+    " Use multiple of shiftwidth when indenting with '<' and '>'-------------{{{
+        " http://sfault-image.b0.upaiyun.com/af/fe/affef33b5fab7d26d541457c29e6c3d0_articlex
+        set shiftround
+    " }}}
 " }}}
 " Key mapping ---------------------------------------------------------------{{{
-	" Map leader ------------------------------------------------------------{{{
+    " Map leader ------------------------------------------------------------{{{
         let mapleader=","
         let maplocalleader="\\"
-	" }}}
-	" Jump from one window to another----------------------------------------{{{
+    " }}}
+    " Jump from one window to another----------------------------------------{{{
         nmap <C-H> <C-W>h
         nmap <C-J> <C-W>j
         nmap <C-K> <C-W>k
         nmap <C-L> <C-W>l
-	" }}}
-	" Sudo to write ---------------------------------------------------------{{{
+    " }}}
+    " Sudo to write ---------------------------------------------------------{{{
         cnoremap w!! w !sudo tee % >/dev/null
-	" }}}
-	" Fast reloading of the .vimrc ------------------------------------------{{{
+    " }}}
+    " Fast reloading of the .vimrc ------------------------------------------{{{
         noremap <silent> <leader>ss :source ~/.vimrc<cr>:echom "vimrc sourced"<cr>
-	" }}}
-	" Fast editing ----------------------------------------------------------{{{
+    " }}}
+    " Fast editing ----------------------------------------------------------{{{
         " Edit the specific file in current window --------------------------{{{
             nnoremap <leader>v :e ~/.vimrc<cr>
             nnoremap <leader>z :e ~/.zshrc<cr>
@@ -91,8 +105,8 @@
             nnoremap <leader>vv :vsplit ~/.vimrc<cr>
             nnoremap <leader>vz :vsplit ~/.zshrc<cr>
         " }}}
-	" }}}
-	" Searching -------------------------------------------------------------{{{
+    " }}}
+    " Searching -------------------------------------------------------------{{{
         nnoremap <leader>si :execute '/' . expand("<cword>")<cr>
         nnoremap <leader>sa :execute '/' . expand("<cWORD>")<cr>
         " Keep search matches in the middle
@@ -104,22 +118,22 @@
         " jump back to exact postion by using `s
             nnoremap / ms/
             nnoremap ? ms?
-	" }}}
-	" Set fold method -------------------------------------------------------{{{
+    " }}}
+    " Set fold method -------------------------------------------------------{{{
         nnoremap <leader>fmk :set fdm=marker<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
         nnoremap <leader>fmn :set fdm=manual<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
         nnoremap <leader>fi :set fdm=indent<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
         nnoremap <leader>fs :set fdm=syntax<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
         nnoremap <leader>fe :set fdm=expr<cr>:execute "normal! mfggVGzC`f100zozz"<cr>
-	" }}}
-	" Close other fold recursively ------------------------------------------{{{
+    " }}}
+    " Close other fold recursively ------------------------------------------{{{
         nnoremap  <leader>zc :execute "normal! mfzM`f100zozz" <cr>
         " mf:    set mark "f" at current position (hope you not using this mark)
         " zM:    select all the text, close all fold recursively
         " `f100zozz: back to mark "f", seems we need to open all the fold
                     " 100 should be big enough
-	" }}}
-	" Highlight word --------------------------------------------------------{{{
+    " }}}
+    " Highlight word --------------------------------------------------------{{{
         " This mini-plugin provides a few mappings for highlighting words temporarily.
         " Sometimes you're looking at a hairy piece of code and would like a certain
         " word or two to stand out temporarily.  You can search for it, but that only
@@ -174,24 +188,24 @@
                 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
                 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
             " }}}
-	" }}}
-	" Strong H and L --------------------------------------------------------{{{
+    " }}}
+    " Strong H and L --------------------------------------------------------{{{
         nnoremap H ^
         nnoremap L $
-	" }}}
-	" Use tab to jump between { & } -----------------------------------------{{{
+    " }}}
+    " Use tab to jump between { & } -----------------------------------------{{{
         nnoremap <Tab> %
-	" }}}
-	" Stop highlighting items from the last research ------------------------{{{
+    " }}}
+    " Stop highlighting items from the last research ------------------------{{{
         nnoremap <CR> :nohlsearch<cr>
-	" }}}
-	" Grep ------------------------------------------------------------------{{{
+    " }}}
+    " Grep ------------------------------------------------------------------{{{
         nnoremap <leader>gi :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
         nnoremap <leader>ga :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
-	" }}}
-	" Write and source .vimrc -----------------------------------------------{{{
+    " }}}
+    " Write and source .vimrc -----------------------------------------------{{{
         nnoremap <leader>ws :w<cr>:source ~/.vimrc<cr>:echom "vimrc sourced"<cr>
-	" }}}
+    " }}}
     " Add/Insert maker ------------------------------------------------------{{{
         " For normal mode ---------------------------------------------------{{{
             nnoremap <leader>am :call AddMarkerNormalMode()<cr>
@@ -288,7 +302,7 @@
     " }}}
 " }}}
 " Plugins  ------------------------------------------------------------------{{{
-	" Vundle ----------------------------------------------------------------{{{
+    " Vundle ----------------------------------------------------------------{{{
         set nocompatible              " be iMproved, required
         filetype off                  " required
 
@@ -319,14 +333,13 @@
         " Put your non-Plugin stuff after this line
 
 " }}}
-	" vim-powerline ---------------------------------------------------------{{{
-        " Show the statusline
+    " Airline ---------------------------------------------------------------{{{
         Bundle "bling/vim-airline"
         set laststatus=2
         let g:airline#extensions#tabline#enabled = 1
         let g:airline_powerline_fonts = 1
 " }}}
-	" RainbowParentheses ----------------------------------------------------{{{
+    " RainbowParentheses ----------------------------------------------------{{{
         Bundle "kien/rainbow_parentheses.vim"
         let g:rbpt_max = 16
         let g:rbpt_loadcmd_toggle = 0
@@ -334,45 +347,45 @@
         au Syntax * RainbowParenthesesLoadRound
         au Syntax * RainbowParenthesesLoadSquare
         au Syntax * RainbowParenthesesLoadBraces
-	" }}}
-	" YouCompleteMe ---------------------------------------------------------{{{
+    " }}}
+    " YouCompleteMe ---------------------------------------------------------{{{
         Bundle 'Valloric/YouCompleteMe'
         "Close the warning of -----------------------------------------------{{{
             " ValueError: Still no compile flags, no completions yet"
             let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
         " }}}
-	" }}}
-	" DelimitMate -----------------------------------------------------------{{{
+    " }}}
+    " DelimitMate -----------------------------------------------------------{{{
         " Auto completion for quotes, parens, etc
         Bundle "Raimondi/delimitMate"
         let delimitMate_expand_space=1
         let delimitMate_expand_cr=1
-	" }}}
-	" Nerdtree --------------------------------------------------------------{{{
+    " }}}
+    " Nerdtree --------------------------------------------------------------{{{
         Bundle "scrooloose/nerdtree"
         map <F3> :NERDTreeToggle<cr>
-	" }}}
-	" IndentLine ------------------------------------------------------------{{{
+    " }}}
+    " IndentLine ------------------------------------------------------------{{{
         " Display vertical lines at indentation level
         Bundle "Yggdroot/indentLine"
         let g:indentLine_char = '┆'
         let g:indentLine_color_term = 239
-	" }}}
-	" Syntastic -------------------------------------------------------------{{{
+    " }}}
+    " Syntastic -------------------------------------------------------------{{{
         Bundle "scrooloose/syntastic"
-	" }}}
-	" EasyMotion ------------------------------------------------------------{{{
+    " }}}
+    " EasyMotion ------------------------------------------------------------{{{
         " Move like open urls by Vimium in Chrome
         Bundle 'Lokaltog/vim-easymotion'
-	" }}}
-	" CtrlP -----------------------------------------------------------------{{{
+    " }}}
+    " CtrlP -----------------------------------------------------------------{{{
         Bundle "kien/ctrlp.vim"
         let g:ctrlp_map = '<c-p>'
         let g:ctrlp_cmd = 'CtrlP'
-	" }}}
-	" Nerdcommenter ---------------------------------------------------------{{{
+    " }}}
+    " Nerdcommenter ---------------------------------------------------------{{{
         Bundle "scrooloose/nerdcommenter"
-            " Usage ----------------------------------------------------------{{{
+            " Usage ---------------------------------------------------------{{{
                 "[count]<leader>cc |NERDComComment|
                 "Comment out the current line or text selected in visual mode.
                 "
@@ -418,8 +431,8 @@
                 "[count]<leader>cu |NERDComUncommentLine|
                 "Uncomments the selected line(s).
             " }}}
-	" }}}
-	" SrcExpl ---------------------------------------------------------------{{{
+    " }}}
+    " SrcExpl ---------------------------------------------------------------{{{
         " Source Explorer
         "   This plugin will change current working directory
         "   go find and comment the command below:
@@ -472,19 +485,19 @@
         nunmap <Tab>
         nnoremap <Tab> %
         nnoremap <C-I> <C-W>j:call g:SrcExpl_Jump()<CR>
-	" }}}
-	" Python-syntax ---------------------------------------------------------{{{
+    " }}}
+    " Python-syntax ---------------------------------------------------------{{{
         " Python syntax highlighting script for vim
         Bundle "hdima/python-syntax"
         let python_highlight_all = 1
-	" }}}
-	" Ack -------------------------------------------------------------------{{{
+    " }}}
+    " Ack -------------------------------------------------------------------{{{
         " Ack in vim
         Bundle "mileszs/ack.vim"
-             " Usage ---------------------------------------------------------{{{
+             " Usage --------------------------------------------------------{{{
                  ":Ack [options] {pattern} [{directories}]
              "}}}
-             " Keyboard Shortcuts --------------------------------------------{{{
+             " Keyboard Shortcuts -------------------------------------------{{{
                  "o    to open (same as enter)
                  "O    to open and close quickfix window
                  "go   to preview file (open but maintain focus on ack.vim
@@ -497,15 +510,15 @@
                  "gv   to open in vertical split silently
                  "q    to close the quickfix window
              "}}}
-	" }}}
-	" TabBar ----------------------------------------------------------------{{{
+    " }}}
+    " TabBar ----------------------------------------------------------------{{{
         Plugin 'majutsushi/tagbar'
         map <F4> :TagbarToggle<cr>
-	" }}}
+    " }}}
     " Fcitx.vim--------------------------------------------------------------{{{
         Plugin 'fcitx.vim'
     " " }}}
-	" Theme -----------------------------------------------------------------{{{
+    " Theme -----------------------------------------------------------------{{{
         Plugin 'tomasr/molokai'
         " Plugin 'altercation/vim-colors-solarized'
 
@@ -517,7 +530,7 @@
 
         " The following part copy from key mapping-Highlighting words
         " This part must be after colorscheme setting
-        " Default Highlights --------------------------------------------{{{
+        " Default Highlights ------------------------------------------------{{{
             hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
             hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
             hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
@@ -539,7 +552,7 @@
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
-	" Foldmethod ------------------------------------------------------------{{{
+    " Foldmethod ------------------------------------------------------------{{{
         autocmd! Filetype vim set foldmethod=marker
         autocmd! Filetype zsh set foldmethod=marker
         autocmd! Filetype python set foldmethod=expr
@@ -588,5 +601,5 @@
             endif
         endfunction
         " }}}
-	" }}}
+    " }}}
 " }}}
