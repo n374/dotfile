@@ -602,4 +602,10 @@
         endfunction
         " }}}
     " }}}
+    " Restore cursor to file position in previous edit session---------------{{{
+        autocmd! BufReadPost *
+                    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                    \   execute "normal! g`\"" |
+                    \ endif
+    " }}}
 " }}}
