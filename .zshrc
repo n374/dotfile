@@ -87,7 +87,7 @@
 #   This for vim theme in tmux ---------------------------------------------{{{
         export TERM=xterm-256color
 #   }}}
-#   Emacs key binding ------------------------------------------{{{
+#   Emacs key binding ------------------------------------------------------{{{
     bindkey '^P' up-line-or-search
     bindkey '^N' down-line-or-search
     bindkey '^J' backward-char
@@ -193,7 +193,7 @@
                 for word in $(echo $words); do
                     echo "-----------------------------------------------------"
                     dict $word
-                    mplayer http://dict.youdao.com/dictvoice\?audio\=$word   > /dev/null 2>&1 >&-
+                    mplayer http://dict.youdao.com/dictvoice\?audio\=$word   > /dev/null 2>&1
                 done
             done
         }
