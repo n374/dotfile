@@ -450,7 +450,7 @@
         let g:SrcExpl_refreshTime = 100
 
         " // Set "Enter" key to jump into the exact definition context
-        " let g:SrcExpl_jumpKey = "<ENTER>"
+        let g:SrcExpl_jumpKey = "<nop>"
 
         " // Set "Space" key for back from the definition context
         " Conflit with the fold key, chang "space" key to anything else
@@ -482,9 +482,8 @@
 
         " SrcExpl will map <Tab> to <C-W>j:call g:SrcExpl_Jump()<CR>
         " Unmap it and map it to whatever you want to map
-        nunmap <Tab>
-        nnoremap <Tab> %
         nnoremap <C-I> <C-W>j:call g:SrcExpl_Jump()<CR>
+        "nunmap <Tab>
     " }}}
     " Python-syntax ---------------------------------------------------------{{{
         " Python syntax highlighting script for vim
@@ -539,7 +538,7 @@
             hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
         " }}}
     " }}}
-    " Snipmate---------------------------------------------------------------{{{
+    " Snipmate --------------------------------------------------------------{{{
         Bundle "MarcWeber/vim-addon-mw-utils"
         Bundle "tomtom/tlib_vim"
         Bundle "garbas/vim-snipmate"
@@ -549,6 +548,12 @@
         " back to insert mode, completion list will disappear
         " and snipmate works
         imap <c-j> <esc>a<Plug>snipMateNextOrTrigger
+    " }}}
+    " Vimim -----------------------------------------------------------------{{{
+        Plugin 'vimim'
+        let g:vimim_map='tab_as_onekey' " 将Tab键设为 点石成金 的快捷键
+        let g:vimim_mode='dynamic' " 动态输入模式（缺省），如果设为static，则需要按空格才会出候选框
+        let g:vimim_punctuation=2 " 常用中文标点（缺省），为0时不用中文标点
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
