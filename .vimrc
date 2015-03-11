@@ -298,7 +298,7 @@
     " }}}
     " Copy to/Paste from system's clipboard----------------------------------{{{
         vnoremap <c-c> "+y
-        inoremap <c-v> <esc>"+p
+        inoremap <c-v> <esc>"+pgi
     " }}}
 " }}}
 " Plugins  ------------------------------------------------------------------{{{
@@ -338,6 +338,7 @@
         set laststatus=2
         let g:airline#extensions#tabline#enabled = 1
         let g:airline_powerline_fonts = 1
+        let g:airline_theme = 'badwolf'
 " }}}
     " RainbowParentheses ----------------------------------------------------{{{
         Bundle "kien/rainbow_parentheses.vim"
@@ -382,6 +383,9 @@
         Bundle "kien/ctrlp.vim"
         let g:ctrlp_map = '<c-p>'
         let g:ctrlp_cmd = 'CtrlP'
+        " Follow symbolic links when listing files but ignore looped internal
+        " symlinks to avoid duplicates
+        let g:ctrlp_follow_symlinks=1
     " }}}
     " Nerdcommenter ---------------------------------------------------------{{{
         Bundle "scrooloose/nerdcommenter"
@@ -483,7 +487,7 @@
         " SrcExpl will map <Tab> to <C-W>j:call g:SrcExpl_Jump()<CR>
         " Unmap it and map it to whatever you want to map
         nnoremap <C-I> <C-W>j:call g:SrcExpl_Jump()<CR>
-        "nunmap <Tab>
+        nunmap <Tab>
     " }}}
     " Python-syntax ---------------------------------------------------------{{{
         " Python syntax highlighting script for vim
