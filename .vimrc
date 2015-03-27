@@ -1,4 +1,7 @@
 " General -------------------------------------------------------------------{{{
+    " Set encoding ----------------------------------------------------------{{{
+        set encoding=utf-8
+    " }}}
     " Set Indent ------------------------------------------------------------{{{
         set autoindent "Preserve current indent on new lines
         set cindent "Set C style indent
