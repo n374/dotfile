@@ -70,6 +70,9 @@
         " http://sfault-image.b0.upaiyun.com/af/fe/affef33b5fab7d26d541457c29e6c3d0_articlex
         set shiftround
     " }}}
+    " Highlight the 81st column ---------------------------------------------{{{
+        let &colorcolumn=81
+    " }}}
 " }}}
 " Key mapping ---------------------------------------------------------------{{{
     " Map leader ------------------------------------------------------------{{{
@@ -558,6 +561,9 @@
         let g:vimim_map='tab_as_onekey' " 将Tab键设为 点石成金 的快捷键
         let g:vimim_mode='dynamic' " 动态输入模式（缺省），如果设为static，则需要按空格才会出候选框
         let g:vimim_punctuation=2 " 常用中文标点（缺省），为0时不用中文标点
+    " }}}
+    " Mark ------------------------------------------------------------------{{{
+        Bundle 'vim-scripts/Mark--Karkat'
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
