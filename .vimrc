@@ -392,6 +392,7 @@
         " Follow symbolic links when listing files but ignore looped internal
         " symlinks to avoid duplicates
         let g:ctrlp_follow_symlinks=1
+        let g:ctrlp_working_path_mode = 'w'
     " }}}
     " Nerdcommenter ---------------------------------------------------------{{{
         Bundle "scrooloose/nerdcommenter"
@@ -568,6 +569,11 @@
     " Mark ------------------------------------------------------------------{{{
         Bundle 'vim-scripts/Mark--Karkat'
     " }}}
+    " Vim-instant-makrdown --------------------------------------------------{{{
+        filetype plugin on
+        set shell=bash\ -i
+        Bundle "suan/vim-instant-markdown"
+    " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
     " Foldmethod ------------------------------------------------------------{{{
@@ -626,4 +632,7 @@
                     \   execute "normal! g`\"" |
                     \ endif
     " }}}
+    " Detect *.md as Markdown -----------------------------------------------{{{
+        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    " " }}}
 " }}}
