@@ -638,4 +638,7 @@
     " Detect *.md as Markdown -----------------------------------------------{{{
         autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     " }}}
+    " Set fold method to indent in python file ------------------------------{{{
+        autocmd FileType python setlocal foldmethod=indent
+    " }}}
 " }}}
