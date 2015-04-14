@@ -574,6 +574,9 @@
         set shell=bash\ -i
         Bundle "suan/vim-instant-markdown"
     " }}}
+    " Vim-windowswap --------------------------------------------------------{{{
+        Bundle "wesQ3/vim-windowswap"
+    " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
     " Foldmethod ------------------------------------------------------------{{{
@@ -634,5 +637,5 @@
     " }}}
     " Detect *.md as Markdown -----------------------------------------------{{{
         autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    " " }}}
+    " }}}
 " }}}
