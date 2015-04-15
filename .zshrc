@@ -6,7 +6,7 @@
     # Look in ~/.oh-my-zsh/themes/
     # Optionally, if you set this to "random", it'll load a random theme each
     # time that oh-my-zsh is loaded.
-    ZSH_THEME="robbyrussell"
+    ZSH_THEME="bira"
 
     # Uncomment the following line to use case-sensitive completion.
     # CASE_SENSITIVE="true"
@@ -162,11 +162,6 @@
                 |awk '{printf "%-7s%-5s%-5s%-7s\n", $1,$2,$3,$4" "$5" "$6}'
         }
 #   }}}
-#   Lc ---------------------------------------------------------------------{{{
-        lc () {
-            pygmentize -O bg=dark $1|less -FXRS
-        }
-#   }}}
 #   Mydict -----------------------------------------------------------------{{{
         mydict () {
             # Show usage
@@ -240,13 +235,18 @@
             cd *$1*/
         }
 #   }}}
-#   Run the last command and pip the output to less-------------------------{{{
+#   Less with highlith or run the last command and pip to less--------------{{{
         le() {
-            CURRENT_COMMAND="`echo $LAST_COMMAND` | less -FXRS"
-            eval $CURRENT_COMMAND
-            # Pipe to less didn't change anything and may case some problem
-            # when run this command twice. So we delete that part.
-            CURRENT_COMMAND="`echo $LAST_COMMAND`"
+            if [ $# -eq 0 ]
+            then
+                CURRENT_COMMAND="`echo $LAST_COMMAND` | less -FXRS"
+                eval $CURRENT_COMMAND
+                # Pipe to less didn't change anything and may case some problem
+                # when run this command twice. So we delete that part.
+                CURRENT_COMMAND="`echo $LAST_COMMAND`"
+            else
+                pygmentize -O bg=dark $1|less -FXRS
+            fi
         }
 #   }}}
 # }}}
@@ -289,5 +289,8 @@
 #   }}}
 #   Open files with default application-------------------------------------{{{
         alias op="xdg-open"
-# }}}
+#   }}}
+#   Rm file to trash -------------------------------------------------------{{{
+        alias tp="trash-cli put"
+#   }}}
 # }}}
