@@ -76,6 +76,10 @@
     " Highlight the 81st column ---------------------------------------------{{{
         let &colorcolumn=81
     " }}}
+    " Open new split panes to right and bottom, which feels more natural ----{{{
+        set splitbelow
+        set splitright
+    " }}}
 " }}}
 " Key mapping ---------------------------------------------------------------{{{
     " Map leader ------------------------------------------------------------{{{
