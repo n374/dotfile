@@ -291,6 +291,6 @@
         alias op="xdg-open"
 #   }}}
 #   Rm file to trash -------------------------------------------------------{{{
-        alias tp="trash-cli put"
+        alias tp="trash-put"
 #   }}}
 # }}}
