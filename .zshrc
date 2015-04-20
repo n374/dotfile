@@ -1,17 +1,18 @@
 # Antigen ------------------------------------------------------------------{{{
     [ -f .antigen/antigen.zsh  ] || git clone -o .antigen https://github.com/zsh-users/antigen.git
     source .antigen/antigen.zsh
+
     antigen use oh-my-zsh
-    antigen bundle git
     antigen bundle colored-man
+    antigen bundle git
+
     antigen bundle zsh-users/zsh-syntax-highlighting
+    antigen bundle wu-nerd/fasd
+
     antigen theme bira
     antigen apply
 # }}}
 # Configuration-------------------------------------------------------------{{{
-#   AutoJump ---------------------------------------------------------------{{{
-        [[ -s /usr/share/autojump/autojump.zsh ]] & . /usr/share/autojump/autojump.zsh
-# }}}
 #   This for vim theme in tmux ---------------------------------------------{{{
         export TERM=xterm-256color
 #   }}}
@@ -219,5 +220,11 @@
 #   }}}
 #   Rm file to trash -------------------------------------------------------{{{
         alias tp="trash-put"
+#   }}}
+#   Fasd -------------------------------------------------------------------{{{
+        alias v='fasd -f -e vim'
+        alias o='fasd -f -e xdg-open'
+        alias sv='fasd -sif -e vim'
+        alias so='fasd -sif -e xdg-open'
 #   }}}
 # }}}
