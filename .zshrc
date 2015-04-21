@@ -1,6 +1,6 @@
 # Antigen ------------------------------------------------------------------{{{
-    [ -f .antigen/antigen.zsh  ] || git clone -o .antigen https://github.com/zsh-users/antigen.git
-    source .antigen/antigen.zsh
+    [ -f ~/.antigen/antigen.zsh  ] || git clone -o ~/.antigen https://github.com/zsh-users/antigen.git
+    source ~/.antigen/antigen.zsh
 
     antigen use oh-my-zsh
     antigen bundle colored-man
