@@ -1,5 +1,5 @@
 # Antigen ------------------------------------------------------------------{{{
-    [ -f ~/.antigen/antigen.zsh  ] || git clone -o ~/.antigen https://github.com/zsh-users/antigen.git
+    [ -f ~/.antigen/antigen.zsh  ] || git clone https://github.com/zsh-users/antigen.git "${HOME}/.antigen"
     source ~/.antigen/antigen.zsh
 
     antigen use oh-my-zsh
