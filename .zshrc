@@ -54,6 +54,22 @@
         zle -N sudo-command-line
         bindkey "\e\e" sudo-command-line
 #   }}}
+#   Use percol in Ctrl-R ---------------------------------------------------{{{
+        function exists { which $1 &> /dev/null }
+
+        if exists percol; then
+            function percol_select_history() {
+                local tac
+                exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+                BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+                CURSOR=$#BUFFER         # move cursor
+                zle -R -c               # refresh
+            }
+
+            zle -N percol_select_history
+            bindkey '^R' percol_select_history
+        fi
+#   }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
 #   Extract ----------------------------------------------------------------{{{
@@ -226,5 +242,11 @@
         alias o='fasd -f -e xdg-open'
         alias sv='fasd -sif -e vim'
         alias so='fasd -sif -e xdg-open'
+#   }}}
+#   P ----------------------------------------------------------------------{{{
+        alias p="percol"
+#   }}}
+#   Psk --------------------------------------------------------------------{{{
+        alias psk="ps aux | percol | awk '{ print \$2 }' | xargs kill"
 #   }}}
 # }}}
