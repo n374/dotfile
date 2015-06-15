@@ -317,6 +317,10 @@
         filetype off                  " required
 
         " set the runtime path to include Vundle and initialize
+        if empty(glob("~/.vim/bundle/Vundle.vim"))
+            echo "Vundle not exists, downloading"
+            !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+        endif
         set rtp+=~/.vim/bundle/Vundle.vim
         call vundle#begin()
         " alternatively, pass a path where Vundle should install plugins
@@ -531,6 +535,7 @@
     " }}}
     " Fcitx.vim--------------------------------------------------------------{{{
         Plugin 'fcitx.vim'
+        set ttimeoutlen=0
     " " }}}
     " Theme -----------------------------------------------------------------{{{
         Plugin 'tomasr/molokai'
