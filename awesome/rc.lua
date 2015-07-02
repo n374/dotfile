@@ -10,6 +10,27 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local vicious = require("vicious")
+-- Memory widget
+memwidget = wibox.widget.textbox()
+vicious.register(memwidget, vicious.widgets.mem, "<span color='#e2ccb0'>$1% </span>", 13)
+-- CPU widget
+cpuwidget = wibox.widget.textbox()
+cpuwidget_format = ""
+for i=1,io.popen("grep processor /proc/cpuinfo|wc -l"):read()+1 do
+    cpuwidget_format = cpuwidget_format .. "<span color='#d88166'>$" .. i .. "% </span>"
+end
+vicious.register(cpuwidget, vicious.widgets.cpu, cpuwidget_format)
+-- Temperature widget
+tempwidget = wibox.widget.textbox()
+vicious.register(tempwidget, vicious.widgets.thermal, "<span color='#e2ccb0'> $1 </span>", 2,"thermal_zone0")
+-- Network widget
+netwidget = wibox.widget.textbox()
+netwidget_format = ""
+for interface in io.popen("route -n|grep -v Kernel|grep -v Destination|grep -v 127.0.0.1|awk '{print $8}'|sort -n|uniq"):lines() do
+    netwidget_format = netwidget_format .. interface ..  "<span color='#d88166'> ↑${"..interface .. " up_kb} ↓${" .. interface .. " down_kb} </span>"
+end
+vicious.register(netwidget, vicious.widgets.net, netwidget_format, 1)
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -190,6 +211,10 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(netwidget)
+    right_layout:add(tempwidget)
+    right_layout:add(cpuwidget)
+    right_layout:add(memwidget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -479,8 +504,10 @@ autorunApps =
    "guake",
    "synapse",
    "ss-local -c .shadowsocks.json",
-   "dropbox start",
+   "sslocal -c .shadowsocks.json",
+   "dropbox",
    "fcitx",
+   "nm-applet",
 }
 if autorun then
    for app = 1, #autorunApps do
