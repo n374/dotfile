@@ -296,7 +296,8 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    awful.key({ "Mod1" , "Control"}, "l",      function () awful.util.spawn("xscreensaver-command -lock") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -397,6 +398,8 @@ awful.rules.rules = {
     { rule = { class = "Wine" },
       properties = { floating = true } },
     { rule = { class = "Telegram" },
+      properties = { floating = true } },
+    { rule = { class = "Synapse" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
@@ -508,6 +511,7 @@ autorunApps =
    "dropbox",
    "fcitx",
    "nm-applet",
+   "/usr/bin/xscreensaver -no-splash",
 }
 if autorun then
    for app = 1, #autorunApps do
