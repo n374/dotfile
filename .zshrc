@@ -208,18 +208,24 @@
         %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 #   }}}
 #   Apt --------------------------------------------------------------------{{{
-        alias agd="sudo apt-get update"
-        alias agg="sudo apt-get upgrade"
-        alias agi="sudo apt-get install"
-        alias agr="sudo apt-get remove"
-        alias agar="sudo apt-get autoremove"
-        alias agac="sudo apt-get autoclean"
-        alias acs="apt-cache search"
+        if exists apt-get; then
+            alias agd="sudo apt-get update"
+            alias agg="sudo apt-get upgrade"
+            alias agi="sudo apt-get install"
+            alias agr="sudo apt-get remove"
+            alias agar="sudo apt-get autoremove"
+            alias agac="sudo apt-get autoclean"
+        fi
+        if exists apt-cache; then
+            alias acs="apt-cache search"
+        fi
 #   }}}
 #   Dpkg -------------------------------------------------------------------{{{
-        alias di="sudo dpkg -i"
-        alias dr="sudo dpkg -r"
-        alias dl="dpkg -l"
+        if exists dpkg; then
+            alias di="sudo dpkg -i"
+            alias dr="sudo dpkg -r"
+            alias dl="dpkg -l"
+        fi
 #   }}}
 #   Show the top 15 progress that gobbling the memory and CPU---------------{{{
         alias psm="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 2 | head -15 | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
@@ -229,7 +235,9 @@
         alias ccat='pygmentize -O bg=dark'
 #   }}}
 #   Ack --------------------------------------------------------------------{{{
-        alias ack="ack-grep"
+        if exists ack-grep; then
+            alias ack="ack-grep"
+        fi
 #   }}}
 #   Open files with default application-------------------------------------{{{
         alias op="xdg-open"
@@ -248,5 +256,25 @@
 #   }}}
 #   Psk --------------------------------------------------------------------{{{
         alias psk="ps aux | percol | awk '{ print \$2 }' | xargs kill"
+#   }}}
+#   Pacman -----------------------------------------------------------------{{{
+        if exists pacman; then
+            alias pS="sudo pacman -S"
+            alias pR="sudo pacman -R"
+            alias pRs="sudo pacman -Rs"
+            alias pu="sudo pacman -Syu"
+            alias pSs="pacman -Ss"
+            alias pQs="pacman -Qs"
+            alias pSi="pacman -Si"
+            alias pQi="pacman -Qi"
+            alias pQii="pacman -Qii"
+            alias pQl="pacman -Ql"
+            alias pQk="pacman -Qk"
+            alias pQo="pacman -Qo"
+            alias pQdt="pacman -Qdt"
+        fi
+        if exists pactree; then
+            alias pt="pactree"
+        fi
 #   }}}
 # }}}
