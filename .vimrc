@@ -349,6 +349,7 @@
 " }}}
     " Airline ---------------------------------------------------------------{{{
         Bundle "bling/vim-airline"
+        Bundle "vim-airline/vim-airline-themes"
         set laststatus=2
         let g:airline#extensions#tabline#enabled = 1
         let g:airline_powerline_fonts = 1
@@ -369,6 +370,8 @@
             " ValueError: Still no compile flags, no completions yet"
             let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
         " }}}
+        let g:EclimCompletionMethod = 'omnifunc'
+        "let g:EclimLogLevel = 'trace'
     " }}}
     " DelimitMate -----------------------------------------------------------{{{
         " Auto completion for quotes, parens, etc
@@ -586,6 +589,16 @@
     " Vim-windowswap --------------------------------------------------------{{{
         Bundle "wesQ3/vim-windowswap"
     " }}}
+    " Navigate within vim and tmux windows ----------------------------------{{{
+        Plugin 'christoomey/vim-tmux-navigator'
+        let g:tmux_navigator_no_mappings = 1
+
+        nnoremap <silent> <C-H> :TmuxNavigateLeft<cr>
+        nnoremap <silent> <C-J> :TmuxNavigateDown<cr>
+        nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+        nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+        nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
+    " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
     " Foldmethod ------------------------------------------------------------{{{
@@ -651,3 +664,5 @@
         autocmd FileType python setlocal foldmethod=indent
     " }}}
 " }}}
+" VIM auto suspend
+"set shell=/bin/zsh\ -l

@@ -11,6 +11,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
+-- Alt tab
+-- git clone https://github.com/jorenheit/awesome_alttab.git ~/.config/awesome/alttab
+local alttab = require("alttab")
 -- Memory widget
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "<span color='#e2ccb0'>$1% </span>", 13)
@@ -62,7 +65,7 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "terminator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -268,11 +271,23 @@ globalkeys = awful.util.table.join(
                 client.focus:raise()
             end
         end),
+    awful.key({ "Mod1",           }, "Tab",
+        function ()
+            alttab.switch(1, "Alt_L", "Tab", "ISO_Left_Tab")
+        end
+    ),
+
+    awful.key({ "Mod1", "Shift"   }, "Tab",
+        function ()
+            alttab.switch(-1, "Alt_L", "Tab", "ISO_Left_Tab")
+        end
+    ),
+
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    --awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -280,7 +295,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ modkey, "Control" }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
@@ -317,6 +332,17 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
+        end),
+    -- Toggle Android emulator by press F12
+    awful.key({                   }, "F12",
+        function ()
+            all_client = client.get()
+            for index, each_client in ipairs(all_client) do
+                if awful.rules.match(each_client, {class="emulator64-x86"}) then
+                    each_client.hidden = not each_client.hidden
+                    each_client.ontop = true
+                end
+            end
         end)
 )
 
@@ -430,10 +456,10 @@ client.connect_signal("manage", function (c, startup)
         end
     end
 
-    if c.class and c.class:match('Telegram') then
+    if c.class and c.class:match('Minecraft') then
         local keys = c:keys()
-        local mykey = awful.key({}, 'Tab', function(c)
-            awful.util.spawn("gdialog --inputbox ' ' 2>&1 | xclip -i -selection clipboard && xdotool key \"ctrl+v\" && xdotool key Return")
+        local mykey = awful.key({}, '\\', function(c)
+            awful.util.spawn("gdialog --inputbox ' ' 2>&1 | xclip -i -selection clipboard && sleep 0.2 && xdotool key --delay 150 Escape t && sleep 0.2 && xdotool key \"ctrl+v\" && xdotool key Return")
         end)
         keys = awful.util.table.join(keys, mykey)
         c:keys(keys)
@@ -502,7 +528,7 @@ function run_once(cmd)
 end
 autorunApps = 
 { 
-   "xcompmgr",
+   "xcompmgr &",
    "tilda",
    "guake",
    "synapse",
@@ -511,6 +537,7 @@ autorunApps =
    "dropbox",
    "fcitx",
    "nm-applet",
+   "pasystray",
    "/usr/bin/xscreensaver -no-splash",
 }
 if autorun then
