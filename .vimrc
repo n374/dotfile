@@ -536,8 +536,11 @@
         Plugin 'majutsushi/tagbar'
         map <F4> :TagbarToggle<cr>
     " }}}
-    " Fcitx.vim--------------------------------------------------------------{{{
-        Plugin 'fcitx.vim'
+    " Fcitx-vim-osx ---------------------------------------------------------{{{
+        " Works for Linux too
+        " If using OS X, fcitx-remote-for-osx should be installed
+        " https://github.com/CodeFalling/fcitx-remote-for-osx
+        Bundle 'CodeFalling/fcitx-vim-osx'
         set ttimeoutlen=0
     " " }}}
     " Theme -----------------------------------------------------------------{{{
@@ -572,19 +575,8 @@
         " and snipmate works
         imap <c-j> <esc>a<Plug>snipMateNextOrTrigger
     " }}}
-    " Vimim -----------------------------------------------------------------{{{
-        Plugin 'vimim'
-        let g:vimim_map='tab_as_onekey' " 将Tab键设为 点石成金 的快捷键
-        let g:vimim_mode='dynamic' " 动态输入模式（缺省），如果设为static，则需要按空格才会出候选框
-        let g:vimim_punctuation=2 " 常用中文标点（缺省），为0时不用中文标点
-    " }}}
     " Mark ------------------------------------------------------------------{{{
         Bundle 'vim-scripts/Mark--Karkat'
-    " }}}
-    " Vim-instant-makrdown --------------------------------------------------{{{
-        filetype plugin on
-        set shell=bash\ -i
-        Bundle "suan/vim-instant-markdown"
     " }}}
     " Vim-windowswap --------------------------------------------------------{{{
         Bundle "wesQ3/vim-windowswap"

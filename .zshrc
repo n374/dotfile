@@ -278,4 +278,19 @@
             alias pt="pactree"
         fi
 #   }}}
+#   brew & brew cask -------------------------------------------------------{{{
+        if [[ `uname` == "Darwin"  ]]; then
+            alias bi="brew install"
+            alias br="brew uninstall"
+            alias bs="brew search"
+            alias bl="brew list"
+            alias bud="brew update"
+            alias bug="brew upgrade"
+            alias bci="brew cask install"
+            alias bcr="brew cask uninstall"
+            alias bcs="brew cask search"
+            alias bcl="brew cask list"
+            alias bcud="brew cask update"
+        fi
+#   }}}
 # }}}
