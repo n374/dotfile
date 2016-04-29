@@ -584,7 +584,7 @@
     " Vim-windowswap --------------------------------------------------------{{{
         Bundle "wesQ3/vim-windowswap"
     " }}}
-    " Vim-tmux-navigator ----------------- ----------------------------------{{{
+    " Vim-tmux-navigator ----------------------------------------------------{{{
         Plugin 'christoomey/vim-tmux-navigator'
         let g:tmux_navigator_no_mappings = 1
 
@@ -593,6 +593,10 @@
         nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
         nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
         nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
+    " }}}
+    " Vim-gitgutter ---------------------------------------------------------{{{
+        " Show git diff in gugger
+        Plugin 'airblade/vim-gitgutter'
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
