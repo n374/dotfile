@@ -310,6 +310,9 @@
         vnoremap <c-c> "+y
         inoremap <c-v> <esc>"+pgi
     " }}}
+    " If multiple matches when navigate using ctags, list them all ----------{{{
+        nnoremap <c-]> g<c-]>
+    " }}}
 " }}}
 " Plugins  ------------------------------------------------------------------{{{
     " Vundle ----------------------------------------------------------------{{{
@@ -581,7 +584,7 @@
     " Vim-windowswap --------------------------------------------------------{{{
         Bundle "wesQ3/vim-windowswap"
     " }}}
-    " Navigate within vim and tmux windows ----------------------------------{{{
+    " Vim-tmux-navigator ----------------- ----------------------------------{{{
         Plugin 'christoomey/vim-tmux-navigator'
         let g:tmux_navigator_no_mappings = 1
 
