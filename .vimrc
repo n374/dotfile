@@ -373,6 +373,9 @@
             " ValueError: Still no compile flags, no completions yet"
             let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
         " }}}
+        " Completion for keywords
+        let g:ycm_seed_identifiers_with_syntax = 1
+        " Make YCM and Eclim play nice
         let g:EclimCompletionMethod = 'omnifunc'
         "let g:EclimLogLevel = 'trace'
     " }}}
