@@ -570,16 +570,14 @@
             hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
         " }}}
     " }}}
-    " Snipmate --------------------------------------------------------------{{{
-        Bundle "MarcWeber/vim-addon-mw-utils"
-        Bundle "tomtom/tlib_vim"
-        Bundle "garbas/vim-snipmate"
-        Bundle "honza/vim-snippets"
-        " If a word triggered YouCompleteme list the completion
-        " candidates, snipmate won't work. Enter normal mode and
-        " back to insert mode, completion list will disappear
-        " and snipmate works
-        imap <c-j> <esc>a<Plug>snipMateNextOrTrigger
+    " Ultisnips -------------------------------------------------------------{{{
+        Plugin 'SirVer/ultisnips'
+        Plugin 'honza/vim-snippets'
+        let g:UltiSnipsExpandTrigger="<c-j>"
+        let g:UltiSnipsJumpForwardTrigger="<c-b>"
+        let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+        " If you want :UltiSnipsEdit to split your window.
+        let g:UltiSnipsEditSplit="vertical"
     " }}}
     " Mark ------------------------------------------------------------------{{{
         Bundle 'vim-scripts/Mark--Karkat'
