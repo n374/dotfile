@@ -387,6 +387,7 @@
     " }}}
     " Nerdtree --------------------------------------------------------------{{{
         Bundle "scrooloose/nerdtree"
+        let NERDTreeIgnore=['.*pyc', 'tag']
         map <F3> :NERDTreeToggle<cr>
     " }}}
     " IndentLine ------------------------------------------------------------{{{
