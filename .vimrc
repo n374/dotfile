@@ -304,6 +304,7 @@
         nnoremap <leader>ac :silent execute "Ack! --ignore-dir=doc --ignore-file=is:tags " .  shellescape(expand("<cword>")) <cr>
         nnoremap <leader>aC :silent execute "Ack! --ignore-dir=doc --ignore-file=is:tags " .  shellescape(expand("<cWORD>"))<cr>
     " " }}}
+        vnoremap <leader>ac <esc>:silent execute "Ack! --ignore-dir=doc --ignore-file=is:tags \"" . Get_visual_selection() . "\"" <cr>
     " Fold-------------------------------------------------------------------{{{
         " Use space to toggle the current fold
             nnoremap <space> za
