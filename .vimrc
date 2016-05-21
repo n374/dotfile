@@ -60,9 +60,6 @@
             endfunction " }}}
         set foldtext=MyFoldText()
     " }}}
-    " Show incomplete commands in the last line of screen--------------------{{{
-        set showcmd
-    " }}}
     " Minimal number of screen lines to keep above and below the cursor------{{{
         set scrolloff=5
     " }}}
@@ -213,15 +210,8 @@
         nnoremap H ^
         nnoremap L $
     " }}}
-    " Use tab to jump between { & } -----------------------------------------{{{
-        nnoremap <Tab> %
-    " }}}
     " Stop highlighting items from the last research ------------------------{{{
         nnoremap <CR> :nohlsearch<cr>
-    " }}}
-    " Grep ------------------------------------------------------------------{{{
-        nnoremap <leader>gi :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
-        nnoremap <leader>ga :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
     " }}}
     " Write and source .vimrc -----------------------------------------------{{{
         nnoremap <leader>ws :w<cr>:source ~/.vimrc<cr>:echom "vimrc sourced"<cr>
@@ -388,7 +378,8 @@
         let g:ycm_seed_identifiers_with_syntax = 1
         " Make YCM and Eclim play nice
         let g:EclimCompletionMethod = 'omnifunc'
-        "let g:EclimLogLevel = 'trace'
+        " Auto close preview window
+        let g:ycm_autoclose_preview_window_after_completion=1
     " }}}
     " DelimitMate -----------------------------------------------------------{{{
         " Auto completion for quotes, parens, etc
@@ -676,5 +667,3 @@
         autocmd FileType python setlocal foldmethod=indent
     " }}}
 " }}}
-" VIM auto suspend
-"set shell=/bin/zsh\ -l
