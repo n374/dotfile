@@ -602,57 +602,18 @@
         " Show git diff in gugger
         Plugin 'airblade/vim-gitgutter'
     " }}}
+    " Tcd -------------------------------------------------------------------{{{
+        " Different work directory in different tab
+        " by using :Tcd directory
+        Plugin 'vim-scripts/tcd.vim'
+    " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
     " Foldmethod ------------------------------------------------------------{{{
         autocmd! Filetype vim set foldmethod=marker
         autocmd! Filetype zsh set foldmethod=marker
-        autocmd! Filetype python set foldmethod=expr
-        autocmd! Filetype python set foldexpr=MyFoldMethodForPython(v:lnum)
+        autocmd! Filetype java set foldmethod=indent
         autocmd! Filetype c set foldmethod=indent
-        autocmd! Filetype nerdtree nnoremap <buffer> <space> o
-        function! MyFoldMethodForPython(lnum) " -----------------------------{{{
-            " If current line is blank or only spaces, return special key "-1"
-            if getline(a:lnum) =~# '\v^\s*$'
-                return -1
-            endif
-            " Get indent of current line
-            let this_indent = indent(a:lnum)/&tabstop
-
-            let numlines = line('$')
-            let nextline = a:lnum + 1
-            " If current is the last line of current file, return "-2"
-            if nextline > numlines
-                next_indent = -2
-            endif
-
-            while nextline <= numlines
-                " If next line is not empty, get indent level
-                if getline(nextline) =~? '\v\S*'
-                    let next_indent = indent(nextline)/&tabstop
-                    break
-                endif
-
-                " If the next line is empty, go to the next nextline
-                let nextline += 1
-                " If we reached the last line, assume the indent if "-2"
-                if nextline == numlines
-                    let next_indent = -2
-                endif
-            endwhile
-
-            " If two line at the same level, just return it
-            if next_indent == this_indent
-                return this_indent
-            " If the next line indent less the current one stay where you are
-            elseif next_indent < this_indent
-                return this_indent
-            " If the nextline at larger indentlevel, fold current line with it
-            else
-                return '>' . next_indent
-            endif
-        endfunction
-        " }}}
     " }}}
     " Restore cursor to file position in previous edit session---------------{{{
         autocmd! BufReadPost *
@@ -663,7 +624,45 @@
     " Detect *.md as Markdown -----------------------------------------------{{{
         autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     " }}}
-    " Set fold method to indent in python file ------------------------------{{{
-        autocmd FileType python setlocal foldmethod=indent
+    " Python ----------------------------------------------------------------{{{
+        autocmd! Filetype python
+                \ setlocal indentexpr=GetGooglePythonIndent(v:lnum) |
+                \ " maximum number of lines to look backwards. |
+                \ let s:maxoff = 50 |
+                \ function GetGooglePythonIndent(lnum)
+                \
+                \   " Indent inside parens. |
+                \   " Align with the open paren unless it is at the end of the line. |
+                \   " E.g. |
+                \   "   open_paren_not_at_EOL(100, |
+                \   "                         (200, |
+                \   "                          300), |
+                \   "                         400) |
+                \   "   open_paren_at_EOL( |
+                \   "       100, 200, 300, 400) |
+                \   call cursor(a:lnum, 1)
+                \   let [par_line, par_col] = searchpairpos('(\|{\|\[', '', ')\|}\|\]', 'bW',
+                \          "line('.') < " . (a:lnum - s:maxoff) . " ? dummy :"
+                \          . " synIDattr(synID(line('.'), col('.'), 1), 'name')"
+                \          . " =~ '\\(Comment\\|String\\)$'")
+                \   if par_line > 0
+                \     call cursor(par_line, 1)
+                \     if par_col != col("$") - 1
+                \       return par_col
+                \     endif
+                \   endif
+                \
+                \   " Delegate the rest to the original function. |
+                \   return GetPythonIndent(a:lnum)
+                \ endfunction |
+                \ |
+                \ let pyindent_nested_paren="&sw*2" |
+                \ let pyindent_open_paren="&sw*2"
+        autocmd! Filetype python
+                \ setlocal foldmethod=indent |
+                \ nnoremap <buffer> <c-]>
+                        \ :YcmCompleter GoToDefinitionElseDeclaration<CR> |
+                \ nnoremap <buffer> <c-t>
+                        \ <c-o>
     " }}}
 " }}}
