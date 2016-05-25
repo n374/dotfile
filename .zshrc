@@ -8,6 +8,7 @@
 
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle wu-nerd/fasd
+    antigen bundle supercrabtree/k
 
     antigen theme bira
     antigen apply
