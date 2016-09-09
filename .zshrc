@@ -9,6 +9,7 @@
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle wu-nerd/fasd
     antigen bundle supercrabtree/k
+    antigen bundle zsh-users/zsh-autosuggestions
 
     antigen theme bira
     antigen apply
@@ -70,6 +71,9 @@
             zle -N percol_select_history
             bindkey '^R' percol_select_history
         fi
+#   }}}
+#   Prevent iTerm2 from closing when typeing Ctrl-D ------------------------{{{
+        set -o ignoreeof
 #   }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
@@ -257,7 +261,7 @@
         alias p="percol"
 #   }}}
 #   Psk --------------------------------------------------------------------{{{
-        alias psk="ps aux | percol | awk '{ print \$2 }' | xargs kill"
+        alias psk="ps aux | percol | awk '{ print \$2 }' | xargs kill -9"
 #   }}}
 #   Pacman -----------------------------------------------------------------{{{
         if exists pacman; then
