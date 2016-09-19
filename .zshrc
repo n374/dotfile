@@ -298,4 +298,17 @@
             alias bcud="brew cask update"
         fi
 #   }}}
+#   Curl -------------------------------------------------------------------{{{
+        alias curl='echo ;curl -w "\n
+        http_code: %{http_code}
+        time_namelookup: %{time_namelookup}
+        time_connect: %{time_connect}
+        time_appconnect: %{time_appconnect}
+        time_pretransfer: %{time_pretransfer}
+        time_starttransfer: %{time_starttransfer}
+        size_request: %{size_request}
+        size_download: %{size_download}
+        speed_download: %{speed_download}
+        time_total: %{time_total}\n\n"'
+#   }}}
 # }}}
