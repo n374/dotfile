@@ -21,14 +21,6 @@
 #   Emacs key binding ------------------------------------------------------{{{
     bindkey '^P' up-line-or-search
     bindkey '^N' down-line-or-search
-    bindkey '^J' backward-char
-    bindkey '^K' forward-char
-    bindkey '^H' backward-delete-char
-    bindkey '^L' delete-char
-    bindkey '^W' backward-kill-word
-    bindkey '^D' kill-word
-    bindkey '^F' forward-word
-    bindkey '^B' backward-word
     bindkey '^R' history-incremental-search-backward
 #   }}}
 #   Set vim as the default editor-------------------------------------------{{{
@@ -309,6 +301,19 @@
         size_request: %{size_request}
         size_download: %{size_download}
         speed_download: %{speed_download}
-        time_total: %{time_total}\n\n"'
+        time_total: %{time_total}\n\n" -i '
+#   }}}
+#   Cd to the path of the front Finder window -------------------------------{{{
+        cdf() {
+            target=`osascript -e 'tell application "Finder" to \
+                if (count of Finder windows) > 0 \
+                then get POSIX path of (target of front Finder window as text)'`
+            if [ "$target" != "" ]; then
+                cd "$target"; pwd
+            else
+                echo 'No Finder window found' >&2
+            fi
+        }
 #   }}}
 # }}}
+
