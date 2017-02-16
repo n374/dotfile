@@ -201,9 +201,10 @@
 #   Source & edit vimrc ----------------------------------------------------{{{
         alias ev="vim ~/.vimrc"
 #   }}}
-#   Compact, colorized git log    From alias.sh ----------------------------{{{
+#   Git --------------------------------------------------------------------{{{
         alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset \
         %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+        alias gfl="git log -p -M --follow --stat --"
 #   }}}
 #   Apt --------------------------------------------------------------------{{{
         if exists apt-get; then
