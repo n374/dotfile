@@ -67,6 +67,9 @@
 #   Prevent iTerm2 from closing when typeing Ctrl-D ------------------------{{{
         set -o ignoreeof
 #   }}}
+#   Load private configration ----------------------------------------------{{{
+        source ~/.zshrc.private
+#   }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
 #   Extract ----------------------------------------------------------------{{{
@@ -189,6 +192,25 @@
                 CURRENT_COMMAND="`echo $LAST_COMMAND`"
             else
                 pygmentize -O bg=dark $1|less -FXRS
+            fi
+        }
+#   }}}
+#   Get the Xst column of clipboard ----------------------------------------{{{
+        cl() {
+            if [ -z "$2" ]
+            then
+                pbpaste | awk '{print $'$1'}'
+            else
+                pbpaste | awk -F $2 '{print $'$1'}'
+            fi
+        }
+        # And copy back to clipboack
+        ccl() {
+            if [ -z "$2" ]
+            then
+                pbpaste | awk '{print $'$1'}' | pbcopy
+            else
+                pbpaste | awk -F $2 '{print $'$1'}' | pbcopy
             fi
         }
 #   }}}
@@ -317,4 +339,3 @@
         }
 #   }}}
 # }}}
-
