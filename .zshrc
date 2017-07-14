@@ -11,7 +11,7 @@
     antigen bundle supercrabtree/k
     antigen bundle zsh-users/zsh-autosuggestions
 
-    antigen theme bira
+    antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
     antigen apply
 # }}}
 # Configuration-------------------------------------------------------------{{{
@@ -19,9 +19,8 @@
         export TERM=xterm-256color
 #   }}}
 #   Emacs key binding ------------------------------------------------------{{{
-    bindkey '^P' up-line-or-search
-    bindkey '^N' down-line-or-search
-    bindkey '^R' history-incremental-search-backward
+        bindkey '^P' up-line-or-search
+        bindkey '^N' down-line-or-search
 #   }}}
 #   Set vim as the default editor-------------------------------------------{{{
         export VISUAL=vim
@@ -314,7 +313,7 @@
         fi
 #   }}}
 #   Curl -------------------------------------------------------------------{{{
-        alias curl='echo ;curl -w "\n
+        alias c='echo ;curl -w "\n
         http_code: %{http_code}
         time_namelookup: %{time_namelookup}
         time_connect: %{time_connect}
