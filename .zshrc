@@ -172,6 +172,9 @@
         }
         zle -N expand_alias_enter
         bindkey "^M" expand_alias_enter
+        # Suggestion will clear when press enter, or suggestion will be shown
+        # as part to previous cmmands
+        ZSH_AUTOSUGGEST_CLEAR_WIDGETS=expand_alias_enter
         # }}}
 #   }}}
 #   Enter a dir contains $1-------------------------------------------------{{{
