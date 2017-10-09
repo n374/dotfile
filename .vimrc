@@ -309,7 +309,8 @@
     " }}}
     " Copy to/Paste from system's clipboard----------------------------------{{{
         vnoremap <c-c> "+y
-        inoremap <c-v> <esc>"+pgi
+        " "+p for paste clipord, gp for move cursor after pasted text
+        inoremap <c-v> <esc>"+gpi
     " }}}
     " If multiple matches when navigate using ctags, list them all ----------{{{
         nnoremap <c-]> g<c-]>
