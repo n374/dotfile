@@ -608,6 +608,9 @@
         " by using :Tcd directory
         Plugin 'vim-scripts/tcd.vim'
     " }}}
+    " InstantMarkdown -------------------------------------------------------{{{
+        Bundle "suan/vim-instant-markdown"
+    " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
     " Foldmethod ------------------------------------------------------------{{{
