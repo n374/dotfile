@@ -67,7 +67,7 @@
         set -o ignoreeof
 #   }}}
 #   Load private configration ----------------------------------------------{{{
-        source ~/.zshrc.private
+        [ -f ~/.zshrc.private ] && source ~/.zshrc.private
 #   }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
