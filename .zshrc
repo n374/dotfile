@@ -306,13 +306,14 @@
             alias br="brew uninstall"
             alias bs="brew search"
             alias bl="brew list"
+            alias bu="brew upgrade"
             alias bud="brew update"
             alias bug="brew upgrade"
             alias bci="brew cask install"
             alias bcr="brew cask uninstall"
             alias bcs="brew cask search"
             alias bcl="brew cask list"
-            alias bcud="brew cask update"
+            alias bcu="brew cask upgrade"
         fi
 #   }}}
 #   Curl -------------------------------------------------------------------{{{
