@@ -12,6 +12,7 @@
     antigen bundle zsh-users/zsh-autosuggestions
 
     antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+    export SPACESHIP_TIME_SHOW=true
     antigen apply
 # }}}
 # Configuration-------------------------------------------------------------{{{
