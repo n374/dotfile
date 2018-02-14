@@ -73,6 +73,11 @@
 #   }}}
 #   Complete for brew installed formulaes ----------------------------------{{{
         fpath=(/usr/local/share/zsh/site-functions $fpath)
+        # The following lines were added by compinstall
+        # End of lines added by compinstall
+        zstyle :compinstall filename '/Users/nerd/.zshrc'
+
+        autoload -Uz compinit
         compinit
 #   }}}
 # }}}
