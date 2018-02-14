@@ -10,6 +10,7 @@
     antigen bundle wu-nerd/fasd
     antigen bundle supercrabtree/k
     antigen bundle zsh-users/zsh-autosuggestions
+    antigen bundle zsh-users/zsh-completions
 
     antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
     export SPACESHIP_TIME_SHOW=true
@@ -69,6 +70,10 @@
 #   }}}
 #   Load private configration ----------------------------------------------{{{
         [ -f ~/.zshrc.private ] && source ~/.zshrc.private
+#   }}}
+#   Complete for brew installed formulaes ----------------------------------{{{
+        fpath=(/usr/local/share/zsh/site-functions $fpath)
+        compinit
 #   }}}
 # }}}
 # Functions ----------------------------------------------------------------{{{
