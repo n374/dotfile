@@ -550,8 +550,8 @@
         " Works for Linux too
         " If using OS X, fcitx-remote-for-osx should be installed
         " https://github.com/CodeFalling/fcitx-remote-for-osx
-        Bundle 'CodeFalling/fcitx-vim-osx'
-        set ttimeoutlen=0
+        "Bundle 'CodeFalling/fcitx-vim-osx'
+        "set ttimeoutlen=0
     " " }}}
     " Theme -----------------------------------------------------------------{{{
         Plugin 'tomasr/molokai'
