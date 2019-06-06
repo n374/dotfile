@@ -18,7 +18,7 @@
 # }}}
 # Configuration-------------------------------------------------------------{{{
 #   This for vim theme in tmux ---------------------------------------------{{{
-        export TERM=xterm-256color
+        export TERM=screen-256color
 #   }}}
 #   Emacs key binding ------------------------------------------------------{{{
         bindkey '^P' up-line-or-search
@@ -118,37 +118,6 @@
                 |awk '{printf "%-7s%-5s%-5s%-7s\n", $1,$2,$3,$4" "$5" "$6}'
         }
 #   }}}
-#   Mydict -----------------------------------------------------------------{{{
-        mydict () {
-            # Show usage
-            if [ $# = 1 ]; then
-                if [[ $1 == -h || $1 == "--help" ]]; then
-                    echo "Usage: add any numbers of words as parameters"
-                    echo "Or:    just run mydict and input any numbers of words"
-                    echo "  It will translate every words to Chinese and pronounce it"
-                    echo "  You need have dict installed"
-                    return
-                fi
-            fi
-            # If any parameters, translate them and pronounce them first
-            for param in $@; do
-                echo "-----------------------------------------------------"
-                dict $param
-                mplayer http://dict.youdao.com/dictvoice\?audio\=$param > /dev/null 2>&1
-                return
-            done
-            # Translate every word user input which separated by spaces
-            while true; do
-                echo -n ">>>"
-                read words
-                for word in $(echo $words); do
-                    echo "-----------------------------------------------------"
-                    dict $word
-                    mplayer http://dict.youdao.com/dictvoice\?audio\=$word   > /dev/null 2>&1
-                done
-            done
-        }
-#   }}}
 #   Run the previous cmd and grep the output then pip to less --------------{{{
         ge () {
             if [ $# -ne 0 ] ; then
@@ -227,6 +196,18 @@
             fi
         }
 #   }}}
+#   Cd to the path of the front Finder window ------------------------------{{{
+        cdf() {
+            target=`osascript -e 'tell application "Finder" to \
+                if (count of Finder windows) > 0 \
+                then get POSIX path of (target of front Finder window as text)'`
+            if [ "$target" != "" ]; then
+                cd "$target"; pwd
+            else
+                echo 'No Finder window found' >&2
+            fi
+        }
+#   }}}
 # }}}
 # Alias --------------------------------------------------------------------{{{
 #   Source & edit zshrc ----------------------------------------------------{{{
@@ -241,26 +222,6 @@
         %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
         alias gfl="git log -p -M --follow --stat --"
 #   }}}
-#   Apt --------------------------------------------------------------------{{{
-        if exists apt-get; then
-            alias agd="sudo apt-get update"
-            alias agg="sudo apt-get upgrade"
-            alias agi="sudo apt-get install"
-            alias agr="sudo apt-get remove"
-            alias agar="sudo apt-get autoremove"
-            alias agac="sudo apt-get autoclean"
-        fi
-        if exists apt-cache; then
-            alias acs="apt-cache search"
-        fi
-#   }}}
-#   Dpkg -------------------------------------------------------------------{{{
-        if exists dpkg; then
-            alias di="sudo dpkg -i"
-            alias dr="sudo dpkg -r"
-            alias dl="dpkg -l"
-        fi
-#   }}}
 #   Show the top 15 progress that gobbling the memory and CPU---------------{{{
         alias psm="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 2 | head -15 | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
         alias psu="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 3 | head -15 | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
@@ -268,16 +229,8 @@
 #   Colorfull cat ----------------------------------------------------------{{{
         alias ccat='pygmentize -O bg=dark'
 #   }}}
-#   Ack --------------------------------------------------------------------{{{
-        if exists ack-grep; then
-            alias ack="ack-grep"
-        fi
-#   }}}
 #   Open files with default application-------------------------------------{{{
         alias op="xdg-open"
-#   }}}
-#   Rm file to trash -------------------------------------------------------{{{
-        alias tp="trash-put"
 #   }}}
 #   Fasd -------------------------------------------------------------------{{{
         alias v='fasd -f -e vim'
@@ -290,26 +243,6 @@
 #   }}}
 #   Psk --------------------------------------------------------------------{{{
         alias psk="ps aux | percol | awk '{ print \$2 }' | xargs kill -9"
-#   }}}
-#   Pacman -----------------------------------------------------------------{{{
-        if exists pacman; then
-            alias pS="sudo pacman -S"
-            alias pR="sudo pacman -R"
-            alias pRs="sudo pacman -Rs"
-            alias pu="sudo pacman -Syu"
-            alias pSs="pacman -Ss"
-            alias pQs="pacman -Qs"
-            alias pSi="pacman -Si"
-            alias pQi="pacman -Qi"
-            alias pQii="pacman -Qii"
-            alias pQl="pacman -Ql"
-            alias pQk="pacman -Qk"
-            alias pQo="pacman -Qo"
-            alias pQdt="pacman -Qdt"
-        fi
-        if exists pactree; then
-            alias pt="pactree"
-        fi
 #   }}}
 #   brew & brew cask -------------------------------------------------------{{{
         if [[ `uname` == "Darwin"  ]]; then
@@ -339,17 +272,5 @@
         size_download: %{size_download}
         speed_download: %{speed_download}
         time_total: %{time_total}\n\n" -i '
-#   }}}
-#   Cd to the path of the front Finder window -------------------------------{{{
-        cdf() {
-            target=`osascript -e 'tell application "Finder" to \
-                if (count of Finder windows) > 0 \
-                then get POSIX path of (target of front Finder window as text)'`
-            if [ "$target" != "" ]; then
-                cd "$target"; pwd
-            else
-                echo 'No Finder window found' >&2
-            fi
-        }
 #   }}}
 # }}}
