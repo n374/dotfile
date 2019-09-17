@@ -242,9 +242,6 @@
 #   Colorfull cat ----------------------------------------------------------{{{
         alias ccat='pygmentize -O bg=dark'
 #   }}}
-#   Open files with default application-------------------------------------{{{
-        alias op="xdg-open"
-#   }}}
 #   Fasd -------------------------------------------------------------------{{{
         alias v='fasd -f -e vim'
         alias o='fasd -f -e xdg-open'
@@ -271,6 +268,8 @@
             alias bcs="brew cask search"
             alias bcl="brew cask list"
             alias bcu="brew cask upgrade"
+            # force install cask to lastest even it's auto update
+            alias bcif="brew cask install --force \$(brew cask outdated --greedy --verbose | grep -v 'latest' | tee /dev/tty | awk '{print \$1}' | xargs)"
         fi
 #   }}}
 #   Curl -------------------------------------------------------------------{{{
