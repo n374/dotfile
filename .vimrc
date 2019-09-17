@@ -611,6 +611,9 @@
     " InstantMarkdown -------------------------------------------------------{{{
         Bundle "suan/vim-instant-markdown"
     " }}}
+    " Thrift.vim ------------------------------------------------------------{{{
+        Bundle 'solarnz/thrift.vim'
+    " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
     " Foldmethod ------------------------------------------------------------{{{
@@ -668,5 +671,8 @@
                         \ :YcmCompleter GoToDefinitionElseDeclaration<CR> |
                 \ nnoremap <buffer> <c-t>
                         \ <c-o>
+    " }}}
+    " Trhfit ----------------------------------------------------------------{{{
+        autocmd BufNewFile,BufReadPost *.thrift set filetype=thrift
     " }}}
 " }}}
