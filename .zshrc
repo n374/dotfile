@@ -5,6 +5,7 @@
     antigen use oh-my-zsh
     antigen bundle colored-man-pages
     antigen bundle git
+    antigen bundle docker
 
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle wu-nerd/fasd
@@ -269,7 +270,7 @@
             alias bcl="brew cask list"
             alias bcu="brew cask upgrade"
             # force install cask to lastest even it's auto update
-            alias bcif="brew cask install --force \$(brew cask outdated --greedy --verbose | grep -v 'latest' | tee /dev/tty | awk '{print \$1}' | xargs)"
+            alias bcif="brew cask outdated --greedy --verbose | grep -v latest | tee /dev/tty | awk '{print \$1}' | xargs brew cask install --force"
         fi
 #   }}}
 #   Curl -------------------------------------------------------------------{{{
