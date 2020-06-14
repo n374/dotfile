@@ -286,4 +286,24 @@
         speed_download: %{speed_download}
         time_total: %{time_total}\n\n" -i '
 #   }}}
+#   Apt --------------------------------------------------------------------{{{
+        if exists apt-get; then
+            alias agd="sudo apt-get update"
+            alias agg="sudo apt-get upgrade"
+            alias agi="sudo apt-get install"
+            alias agr="sudo apt-get remove"
+            alias agar="sudo apt-get autoremove"
+            alias agac="sudo apt-get autoclean"
+        fi
+        if exists apt-cache; then
+            alias acs="apt-cache search"
+        fi
+#   }}}
+#   Dpkg -------------------------------------------------------------------{{{
+        if exists dpkg; then
+            alias di="sudo dpkg -i"
+            alias dr="sudo dpkg -r"
+            alias dl="dpkg -l"
+        fi
+#   }}}
 # }}}
