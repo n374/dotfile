@@ -546,13 +546,6 @@
         Plugin 'majutsushi/tagbar'
         map <F4> :TagbarToggle<cr>
     " }}}
-    " Fcitx-vim-osx ---------------------------------------------------------{{{
-        " Works for Linux too
-        " If using OS X, fcitx-remote-for-osx should be installed
-        " https://github.com/CodeFalling/fcitx-remote-for-osx
-        "Bundle 'CodeFalling/fcitx-vim-osx'
-        "set ttimeoutlen=0
-    " " }}}
     " Theme -----------------------------------------------------------------{{{
         Plugin 'tomasr/molokai'
         " Plugin 'altercation/vim-colors-solarized'
@@ -573,15 +566,6 @@
             hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
             hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
         " }}}
-    " }}}
-    " Ultisnips -------------------------------------------------------------{{{
-        Plugin 'SirVer/ultisnips'
-        Plugin 'honza/vim-snippets'
-        let g:UltiSnipsExpandTrigger="<c-j>"
-        let g:UltiSnipsJumpForwardTrigger="<c-b>"
-        let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-        " If you want :UltiSnipsEdit to split your window.
-        let g:UltiSnipsEditSplit="vertical"
     " }}}
     " Mark ------------------------------------------------------------------{{{
         Bundle 'vim-scripts/Mark--Karkat'
