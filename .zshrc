@@ -195,6 +195,14 @@
         cl() {
             if [ -z "$2" ]
             then
+                awk '{print $'$1'}'
+            else
+                awk -F $2 '{print $'$1'}'
+            fi
+        }
+        pcl() {
+            if [ -z "$2" ]
+            then
                 pbpaste | awk '{print $'$1'}'
             else
                 pbpaste | awk -F $2 '{print $'$1'}'
@@ -202,6 +210,14 @@
         }
         # And copy back to clipboack
         ccl() {
+            if [ -z "$2" ]
+            then
+                awk '{print $'$1'}' | pbcopy
+            else
+                awk -F $2 '{print $'$1'}' | pbcopy
+            fi
+        }
+        pccl() {
             if [ -z "$2" ]
             then
                 pbpaste | awk '{print $'$1'}' | pbcopy
@@ -270,7 +286,7 @@
             alias bcl="brew cask list"
             alias bcu="brew cask upgrade"
             # force install cask to lastest even it's auto update
-            alias bcif="brew cask outdated --greedy --verbose | grep -v latest | tee /dev/tty | awk '{print \$1}' | xargs brew cask install --force"
+            alias bcif="brew outdated --cask --greedy --verbose | grep -v latest | tee /dev/tty | awk '{print \$1}' | xargs brew cask install --force"
         fi
 #   }}}
 #   Curl -------------------------------------------------------------------{{{
