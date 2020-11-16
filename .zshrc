@@ -322,4 +322,8 @@
             alias dl="dpkg -l"
         fi
 #   }}}
+#   Git --------------------------------------------------------------------{{{
+        alias gco="git branch | percol | xargs git checkout"
+        alias gup="git pull origin $(git_current_branch)"
+#   }}}
 # }}}
