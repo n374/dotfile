@@ -251,6 +251,9 @@
         alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset \
         %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
         alias gfl="git log -p -M --follow --stat --"
+        if exists percol; then
+            alias gb="git branch | percol | xargs git checkout"
+        fi
 #   }}}
 #   Show the top 15 progress that gobbling the memory and CPU---------------{{{
         alias psm="ps -o pid,pmem,pcpu,command -A | sort -n -r -k 2 | head -15 | awk '{printf \"%-7s%-5s%-5s%-7s\\n\", \$1,\$2,\$3,\$4\" \"\$5\" \"\$6}'"
@@ -280,13 +283,12 @@
             alias bu="brew upgrade"
             alias bud="brew update"
             alias bug="brew upgrade"
-            alias bci="brew cask install"
-            alias bcr="brew cask uninstall"
-            alias bcs="brew cask search"
-            alias bcl="brew cask list"
+            alias bci="brew install --cask"
+            alias bcr="brew uninstall --cask"
+            alias bcl="brew list --cask"
             alias bcu="brew cask upgrade"
             # force install cask to lastest even it's auto update
-            alias bcif="brew outdated --cask --greedy --verbose | grep -v latest | tee /dev/tty | awk '{print \$1}' | xargs brew cask install --force"
+            alias bcif="brew outdated --cask --greedy --verbose | grep -v latest | tee /dev/tty | awk '{print \$1}' | xargs brew upgrade --cask"
         fi
 #   }}}
 #   Curl -------------------------------------------------------------------{{{
@@ -323,7 +325,7 @@
         fi
 #   }}}
 #   Git --------------------------------------------------------------------{{{
-        alias gco="git branch | percol | xargs git checkout"
-        alias gup="git pull origin $(git_current_branch)"
+        alias gcop="git branch | percol | xargs git checkout"
+        alias gup="git pull origin \$(git_current_branch)"
 #   }}}
 # }}}
