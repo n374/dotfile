@@ -1,0 +1,13 @@
+" Jump from one window to another----------------------------------------{{{
+    nmap <C-H> <C-W>h
+    nmap <C-J> <C-W>j
+    nmap <C-K> <C-W>k
+    nmap <C-L> <C-W>l
+" }}}
+" Minimal number of screen lines to keep above and below the cursor------{{{
+    set scrolloff=5
+" }}}
+" Show line number and relative number ----------------------------------{{{
+    set number
+    set relativenumber
+" }}}
