@@ -275,7 +275,7 @@
         alias psk="ps aux | percol | awk '{ print \$2 }' | xargs kill -9"
 #   }}}
 #   brew & brew cask -------------------------------------------------------{{{
-        if [[ `uname` == "Darwin"  ]]; then
+        if command -v brew &> /dev/null; then
             alias bi="brew install"
             alias br="brew uninstall"
             alias bs="brew search"
@@ -305,16 +305,16 @@
         time_total: %{time_total}\n\n" -i '
 #   }}}
 #   Apt --------------------------------------------------------------------{{{
-        if exists apt-get; then
-            alias agd="sudo apt-get update"
-            alias agg="sudo apt-get upgrade"
-            alias agi="sudo apt-get install"
-            alias agr="sudo apt-get remove"
-            alias agar="sudo apt-get autoremove"
-            alias agac="sudo apt-get autoclean"
+        if exists apt; then
+            alias agd="sudo apt update"
+            alias agg="sudo apt upgrade"
+            alias agi="sudo apt install"
+            alias agr="sudo apt remove"
+            alias agar="sudo apt autoremove"
+            alias agac="sudo apt autoclean"
         fi
         if exists apt-cache; then
-            alias acs="apt-cache search"
+            alias acs="apt search"
         fi
 #   }}}
 #   Dpkg -------------------------------------------------------------------{{{
