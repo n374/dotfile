@@ -595,8 +595,11 @@
     " InstantMarkdown -------------------------------------------------------{{{
         Bundle "suan/vim-instant-markdown"
     " }}}
-    " Thrift.vim ------------------------------------------------------------{{{
-        Bundle 'solarnz/thrift.vim'
+    " Vim-oscyank -----------------------------------------------------------{{{
+        " Copy text from remote vim to system clipboard
+        " Terminal emulator should support OSC52
+        Bundle 'ojroques/vim-oscyank'
+        vnoremap <c-c> :OSCYank<CR>
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
