@@ -659,7 +659,7 @@
                 \ nnoremap <buffer> <c-t>
                         \ <c-o>
     " }}}
-    " Trhfit ----------------------------------------------------------------{{{
+    " Thrfit ----------------------------------------------------------------{{{
         autocmd BufNewFile,BufReadPost *.thrift set filetype=thrift
     " }}}
 " }}}
