@@ -1,6 +1,0 @@
-# Always color, even if piping to a another program
---color
-
-# Ignore files and directory
-# --ignore-dir=target
---ignore-file=is:tags
