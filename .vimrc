@@ -600,6 +600,7 @@
         " Terminal emulator should support OSC52
         Bundle 'ojroques/vim-oscyank'
         vnoremap <c-c> :OSCYank<CR>
+        let g:oscyank_term = 'default'
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
