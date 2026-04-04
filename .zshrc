@@ -50,20 +50,20 @@
         zle -N sudo-command-line
         bindkey "\e\e" sudo-command-line
 #   }}}
-#   Use percol in Ctrl-R ---------------------------------------------------{{{
+#   Use peco in Ctrl-R ---------------------------------------------------{{{
         function exists { which $1 &> /dev/null }
 
-        if exists percol; then
-            function percol_select_history() {
+        if exists peco; then
+            function peco_select_history() {
                 local tac
                 exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-                BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+                BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
                 CURSOR=$#BUFFER         # move cursor
                 zle -R -c               # refresh
             }
 
-            zle -N percol_select_history
-            bindkey '^R' percol_select_history
+            zle -N peco_select_history
+            bindkey '^R' peco_select_history
         fi
 #   }}}
 #   Prevent iTerm2 from closing when typeing Ctrl-D ------------------------{{{
@@ -251,8 +251,8 @@
         alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset \
         %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
         alias gfl="git log -p -M --follow --stat --"
-        if exists percol; then
-            alias gb="git branch | percol | xargs git checkout"
+        if exists peco; then
+            alias gb="git branch | peco | xargs git checkout"
         fi
 #   }}}
 #   Show the top 15 progress that gobbling the memory and CPU---------------{{{
@@ -269,10 +269,10 @@
         alias so='fasd -sif -e xdg-open'
 #   }}}
 #   P ----------------------------------------------------------------------{{{
-        alias p="percol"
+        alias p="peco"
 #   }}}
 #   Psk --------------------------------------------------------------------{{{
-        alias psk="ps aux | percol | awk '{ print \$2 }' | xargs kill -9"
+        alias psk="ps aux | peco | awk '{ print \$2 }' | xargs kill -9"
 #   }}}
 #   brew & brew cask -------------------------------------------------------{{{
         if command -v brew &> /dev/null; then
@@ -304,6 +304,10 @@
         speed_download: %{speed_download}
         time_total: %{time_total}\n\n" -i '
 #   }}}
+#   Codex ------------------------------------------------------------------{{{
+        alias codex='PROXY=http://127.0.0.1:1080 http_proxy=$PROXY https_proxy=$PROXY no_proxy=localhost,127.0.0.1,127.0.0.0/8,::1,local.home,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16 NO_PROXY=localhost,127.0.0.1,127.0.0.0/8,::1,local.home,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16 codex'
+        alias cdx='PROXY=http://127.0.0.1:1080 http_proxy=$PROXY https_proxy=$PROXY no_proxy=localhost,127.0.0.1,127.0.0.0/8,::1,local.home,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16 NO_PROXY=localhost,127.0.0.1,127.0.0.0/8,::1,local.home,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16 codex'
+#   }}}
 #   Apt --------------------------------------------------------------------{{{
         if exists apt; then
             alias agd="sudo apt update"
@@ -325,7 +329,11 @@
         fi
 #   }}}
 #   Git --------------------------------------------------------------------{{{
-        alias gcop="git branch | percol | xargs git checkout"
+        alias gcop="git branch | peco | xargs git checkout"
         alias gup="git pull origin \$(git_current_branch)"
 #   }}}
 # }}}
+
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
