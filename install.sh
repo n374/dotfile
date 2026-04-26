@@ -8,14 +8,19 @@ IGNORE=". \
 
 function create_link() {
     echo "> $2"
-    # backup if exists
-    if [ -f $2 ] || [ -d $2 ]; then
+    # skip if already a symlink pointing to the correct source
+    if [ -L "$2" ] && [ "$(readlink "$2")" = "$1" ]; then
+        echo "already linked, skipping";
+        return
+    fi
+    # backup if exists (regular file, directory, or wrong symlink)
+    if [ -e "$2" ] || [ -L "$2" ]; then
         echo "exists, backing up";
-        mv $2 $2-`date '+%Y-%m-%d-%H:%M:%S'`;
+        mv "$2" "$2-$(date '+%Y-%m-%d-%H:%M:%S')";
     fi
     # link
     echo "linking from $1\n";
-    ln -s $1 $2
+    ln -s "$1" "$2"
 }
 
 
