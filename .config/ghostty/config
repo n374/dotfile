@@ -1,0 +1,11 @@
+# 窗口默认最大化
+maximize = true
+
+# 标签栏常驻显示
+window-show-tab-bar = always
+
+# 关闭窗口 VSync（减少输入延迟）
+window-vsync = false
+
+# 窗口透明度（1.0 完全不透明，0.0 完全透明）
+background-opacity = 0.8
