@@ -308,7 +308,11 @@
             vnoremap <leader><space> :execute "normal! mf[zzAVzC`f"<cr>
     " }}}
     " Copy to/Paste from system's clipboard----------------------------------{{{
-        vnoremap <c-c> "+y
+        " <c-c> 同时做两件事：写本地系统剪贴板("+y) + 发 OSC52(OSCYankVisual,SSH 远程回传本地终端)
+        " 顺序关键：先 "+y 退出可视模式，再 :OSCYankVisual；否则可视模式下的 ':' 会自动塞
+        " '<,'> 范围给只接受 -nargs=1、不接受 range 的新版 :OSCYank，触发 E481: No range allowed。
+        " 本地复制靠 "+y 兜底(直接进 macOS 剪贴板,不依赖终端是否支持 OSC52)，远程靠 OSCYankVisual。
+        vnoremap <c-c> "+y:OSCYankVisual<CR>
         " "+p for paste clipord, gp for move cursor after pasted text
         inoremap <c-v> <esc>"+gpi
     " }}}
@@ -599,8 +603,10 @@
         " Copy text from remote vim to system clipboard
         " Terminal emulator should support OSC52
         Bundle 'ojroques/vim-oscyank'
-        vnoremap <c-c> :OSCYank<CR>
-        let g:oscyank_term = 'default'
+        " <c-c> 映射已统一迁到上面 "Copy to/Paste from system's clipboard" 段，
+        " 用新版 -range 命令 OSCYankVisual；旧写法 vnoremap <c-c> :OSCYank<CR> 在
+        " 2024-11 插件升级(OSCYank 改 -nargs=1,去掉 -range)后会报 E481，已废弃。
+        " g:oscyank_term 也是旧版选项，新版改用 g:oscyank_osc52/g:oscyank_silent，已移除。
     " }}}
 " }}}
 " Autocommands --------------------------------------------------------------{{{
